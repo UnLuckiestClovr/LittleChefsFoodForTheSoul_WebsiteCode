@@ -1,11 +1,20 @@
 const express = require('express');
 const httpProxy = require('http-proxy');
+const { Eureka } = require('eureka-js-client');
+const { registerWithEureka } = require('./eureka-helper');
 
 const app = express()
 const proxy = httpProxy.createProxyServer({});  
 
+
 const USERAPIHOST = 'localhost';
-const USERAPIPORT = '';
+const USERAPIPORT = 15011;
+
+registerWithEureka('Node-Gateway', 'localhost', 15010);
+registerWithEureka('User-Service-API', 'localhost', 15011);
+registerWithEureka('Recipe-Service-API', 'localhost', 15012);
+registerWithEureka('Basket-Service-API', 'localhost', 15013);
+registerWithEureka('Order-Service-API', 'localhost', 15014);
 
 app.all('/userapi/*', (req,res) => {
     // Extract Path After Gateway Prefix
@@ -19,7 +28,7 @@ app.all('/userapi/*', (req,res) => {
 })
 
 
-const port = 15000;
+const port = 15010;
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 })

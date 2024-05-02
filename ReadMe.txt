@@ -1,11 +1,11 @@
 Backend Uses -
     Python - FastAPI
-    C# - .NET API
+    Java - Springboot
     Javascript - Node.js / Express  { For Custom Gateway }
 
     MongoDB
     Redis-Stack
-    SQLServer
+    SQLServer2
     
 
 Frontend Uses - 
@@ -49,3 +49,19 @@ Order {
 }
 
 ----------------------------------------------
+
+Service Port Info:
+
+Eureka : 15000
+Kafka : 15001
+Zookeeper : 15002
+Email Handler : 15003
+MongoDB : 15004
+Redis-Stack : 15005
+SQLServer : 15006
+
+API Gateway : 15010
+UserService : 15011
+RecipeService : 15012
+BasketService : 15013
+OrderService : 15014
