@@ -7,6 +7,9 @@
 
 package pro290.orderservice;
 
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
 public class OrderRest
 {
     
