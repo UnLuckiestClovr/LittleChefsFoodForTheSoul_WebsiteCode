@@ -17,10 +17,10 @@ const ORDERAPIHOST = 'localhost';
 const ORDERAPIPORT = 15014;
 
 registerWithEureka('Node-Gateway', 'localhost', 15010);
-registerWithEureka('User-Service-API', USERAPIHOST, USERAPIPORT);
-registerWithEureka('Recipe-Service-API', RECIPEAPIHOST, RECIPEAPIPORT);
-registerWithEureka('Basket-Service-API', BASKETAPIHOST, BASKETAPIPORT);
-registerWithEureka('Order-Service-API', ORDERAPIHOST, ORDERAPIPORT);
+// registerWithEureka('User-Service-API', USERAPIHOST, USERAPIPORT);
+// registerWithEureka('Recipe-Service-API', RECIPEAPIHOST, RECIPEAPIPORT);
+// registerWithEureka('Basket-Service-API', BASKETAPIHOST, BASKETAPIPORT);
+// registerWithEureka('Order-Service-API', ORDERAPIHOST, ORDERAPIPORT);
 
 app.all('/userapi/*', (req,res) => {
     
