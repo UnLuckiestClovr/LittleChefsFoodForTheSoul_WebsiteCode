@@ -7,14 +7,11 @@
 
 package pro290.orderservice;
 
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 import java.util.UUID;
 
-@Repository
-public abstract class OrderJPARepository implements JpaRepository<Order, UUID> {
-
+public interface OrderJPARepository extends JpaRepository<RecipeOrder, UUID> 
+{
+    
 }

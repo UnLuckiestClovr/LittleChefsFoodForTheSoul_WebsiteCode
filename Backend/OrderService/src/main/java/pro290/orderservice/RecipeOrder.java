@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-public class Order
+public class RecipeOrder
 {
     @Id
     private UUID OID;
@@ -18,14 +18,14 @@ public class Order
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> Items = new ArrayList<>();
-    public Order(UUID oid, UUID uid, List<OrderItem> items)
+    public RecipeOrder(UUID oid, UUID uid, List<OrderItem> items)
     {
         setOID(oid);
         setUID(uid);
         setItems(items);
     }
 
-    public Order() {
+    public RecipeOrder() {
 
     }
 
@@ -33,7 +33,7 @@ public class Order
         return OID;
     }
 
-    private void setOID(UUID OID) {
+    public void setOID(UUID OID) {
         this.OID = OID;
     }
 

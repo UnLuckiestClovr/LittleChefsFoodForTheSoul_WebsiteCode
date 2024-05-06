@@ -22,7 +22,7 @@ public class OrderItem
     private String itemId;
 
     @ManyToOne
-    private Order order;
+    private RecipeOrder order;
 
     public OrderItem(String itemId) {
         this.itemId = itemId;
@@ -33,5 +33,14 @@ public class OrderItem
     }
 
     // Getters and setters
+    public Long getOrderItemId()
+    {
+        return this.id;
+    }
+    public String getItemId()
+    {
+        return this.itemId;
+    }
+    
 }
 
