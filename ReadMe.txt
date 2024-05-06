@@ -65,3 +65,7 @@ UserService : 15011
 RecipeService : 15012
 BasketService : 15013
 OrderService : 15014
+
+Docker Commands ------------------------------
+
+docker run -p 15000:8761 -t steeltoeoss/eureka-server

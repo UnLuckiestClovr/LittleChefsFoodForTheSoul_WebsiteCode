@@ -23,6 +23,8 @@ registerWithEureka('Basket-Service-API', BASKETAPIHOST, BASKETAPIPORT);
 registerWithEureka('Order-Service-API', ORDERAPIHOST, ORDERAPIPORT);
 
 app.all('/userapi/*', (req,res) => {
+    
+
     // Extract Path After Gateway Prefix
     const reroutePath = req.originalUrl.replace('/userapi/','/');
 
@@ -33,6 +35,10 @@ app.all('/userapi/*', (req,res) => {
     proxy.web(req, res, { target: targetURL })
 })
 
+proxy.on('error', (err, req, res) => {
+    console.error('Proxy error:', err);
+    res.status(500).send('Proxy error');
+});
 
 const port = 15010;
 app.listen(port, () => {
