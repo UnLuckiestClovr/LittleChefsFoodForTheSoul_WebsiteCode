@@ -9,12 +9,12 @@ const proxy = httpProxy.createProxyServer({});
 // Host & Port for Each Service
 const USERAPIHOST = 'localhost';
 const USERAPIPORT = 15011;
-const RECIPEAPIHOST = 'localhost';
-const RECIPEAPIPORT = 15012;
-const BASKETAPIHOST = 'localhost';
-const BASKETAPIPORT = 15013;
-const ORDERAPIHOST = 'localhost';
-const ORDERAPIPORT = 15014;
+// const RECIPEAPIHOST = 'localhost';
+// const RECIPEAPIPORT = 15012;
+// const BASKETAPIHOST = 'localhost';
+// const BASKETAPIPORT = 15013;
+// const ORDERAPIHOST = 'localhost';
+// const ORDERAPIPORT = 15014;
 
 registerWithEureka('Node-Gateway', 'localhost', 15010);
 // registerWithEureka('User-Service-API', USERAPIHOST, USERAPIPORT);
