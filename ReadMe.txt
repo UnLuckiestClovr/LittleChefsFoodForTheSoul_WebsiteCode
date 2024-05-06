@@ -57,8 +57,8 @@ Kafka : 15001
 Zookeeper : 15002
 Email Handler : 15003
 MongoDB : 15004
-Redis-Stack : 15005
-SQLServer : 15006
+Redis-Stack : 15005 & 15006
+SQLServer : 15007
 
 API Gateway : 15010
 UserService : 15011
@@ -68,4 +68,13 @@ OrderService : 15014
 
 Docker Commands ------------------------------
 
-docker run -p 15000:8761 -t steeltoeoss/eureka-server
+docker network create littlechefrecipes
+
+docker run -p 15000:8761 -d --name LittleChefsEureka --net littlechefrecipes -d steeltoeoss/eureka-server
+
+docker run -p 15004:27017 -d --name LittleChefsMongoDB --net littlechefrecipes
+
+docker run -d --name ECommerceDTB_Redis -p 15006:6379 -p 15007:8001 --net littlechefrecipes redis/redis-stack:latest
+(Redis-Stack has two ports, the first is the actual redis DTB, the second is Redis-Insight which is like the MongoCompass of Redis and is accessed through "http://localhost:15007")
+
+docker run --name LittleChefsSQLServer -p 15007:1433 --net ecomm_jsb -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=3comm3rce" -d mcr.microsoft.com/mssql/server:2019-latest
