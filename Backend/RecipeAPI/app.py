@@ -3,10 +3,17 @@ from fastapi import FastAPI, Path, Depends
 from starlette.responses import Response
 from py_eureka_client import eureka_client
 
+from routes import POST, GET, PUT, DELETE
+
 app = FastAPI(
     title='Little Chefs Recipe API',
     version='0.1'
 )
+
+app.include_router(POST.router)
+app.include_router(GET.router)
+app.include_router(PUT.router)
+app.include_router(DELETE.router)
 
 @app.get("/")
 async def root():

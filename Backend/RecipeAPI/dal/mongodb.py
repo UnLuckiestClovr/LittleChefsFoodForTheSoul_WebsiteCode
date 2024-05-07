@@ -76,3 +76,18 @@ def deleteRecipe(RID: str):
             "success" : False,
             "message" : f"Recipe Deletion for Recipe {RID} Failed"
         }
+
+def updateRecipe(updatedRecipe: Recipe): 
+    try:
+        recipeColl = objDatabase["Recipes"]
+        recipeColl.find_one_and_replace({"RID":updatedRecipe.RID}, json.loads(updatedRecipe.json()))
+
+        return {
+            "success" : True,
+            "message" : f"Recipe Deletion for Recipe {updatedRecipe.RID} Successful"
+        }
+    except Exception as e:
+        return {
+            "success" : False,
+            "message" : f"Recipe Updating for Recipe {updatedRecipe.RID} Failed"
+        }

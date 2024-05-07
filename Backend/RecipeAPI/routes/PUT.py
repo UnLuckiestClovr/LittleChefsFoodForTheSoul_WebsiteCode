@@ -6,7 +6,7 @@ from models.apimodels import Item, User, NewUser, LoginAttempt
 import dal.mongodb as mongo
 
 router = APIRouter(
-    prefix="/update",
+    prefix="/",
     tags=["recipess"],
     responses={404 : {"description": "Not Found"}}
 )
