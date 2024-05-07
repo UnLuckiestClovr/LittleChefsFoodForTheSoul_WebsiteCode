@@ -20,7 +20,7 @@ exports.registerWithEureka = function(appName, serviceHost, PORT) {
             name: 'MyOwn',
         },
     },
-    //retry 10 time for 3 minute 20 seconds.
+    //retry 10 times for 3 minute 20 seconds.
     eureka: {
         host: eurekaHost,
         port: eurekaPort,

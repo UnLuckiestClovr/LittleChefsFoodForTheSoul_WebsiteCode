@@ -26,7 +26,8 @@ def createRecipe(newRecipe: NewRecipe):
         recipeColl = objDatabase["Recipes"]
         recipeColl.insert_one(json.loads(recipe.json()))
         return {
-            "success" : ","
+            "success" : True,
+            "Recipe": recipe.json()
         }
     except Exception as e:
         return {
@@ -34,7 +35,7 @@ def createRecipe(newRecipe: NewRecipe):
             "message" : f"Recipe Creation Failed"
         }
 
-def getRecipe(RID: str):
+def getRecipeByID(RID: str):
     try:
         recipeColl = objDatabase["Recipes"]
         result = recipeColl.find_one({"RID" : RID})
@@ -48,3 +49,30 @@ def getRecipe(RID: str):
             "message" : f"Recipe Fetch for Recipe {RID} Failed"
         }
 
+def getRecipeByIngredient(ingredient: str):
+    try:
+        recipeColl = objDatabase["Recipes"]
+        results = recipeColl.find({"Ingredients" : {"$in" : [ingredient]}})
+        return {
+            "success" : True,
+            "Recipes" : results
+        }
+    except Exception as e:
+        return {
+            "success" : False,
+            "message" : f"Recipe Fetch for Recipe with {ingredient} Failed"
+        }
+
+def deleteRecipe(RID: str):
+    try:
+        recipeColl = objDatabase["Recipes"]
+        recipeColl.find_one_and_delete({"RID": RID})
+        return {
+            "success" : True,
+            "message" : f"Recipe Deletion for Recipe {RID} Successful"
+        }
+    except Exception as e:
+        return {
+            "success" : False,
+            "message" : f"Recipe Deletion for Recipe {RID} Failed"
+        }

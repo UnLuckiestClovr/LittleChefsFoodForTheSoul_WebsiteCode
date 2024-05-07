@@ -14,3 +14,7 @@ router = APIRouter(
 @router.get("/")
 async def testEndpoint():
     return "Endpoint Reached!"
+
+@router.put("/")
+async def updateRecipe():
+    pass

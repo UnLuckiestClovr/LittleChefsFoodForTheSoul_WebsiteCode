@@ -66,6 +66,8 @@ RecipeService : 15012
 BasketService : 15013
 OrderService : 15014
 
+
+
 Docker Commands ------------------------------
 
 docker network create littlechefrecipes

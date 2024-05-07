@@ -17,4 +17,8 @@ async def testEndpoint():
 
 @router.get("/{RID}")
 async def getRecipeByRID(RID: str = Path(..., alias='RID')):
-    return mongo.getRecipe(RID)
+    return mongo.getRecipeByID(RID)
+
+@router.get("/searchingredient/{ingredient}")
+async def getRecipeByIngredient(ingredient: str = Path(..., alias='ingredient')):
+    return mongo.getRecipeByIngredient(ingredient)
