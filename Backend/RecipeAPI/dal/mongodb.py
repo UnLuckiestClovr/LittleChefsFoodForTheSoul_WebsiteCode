@@ -19,6 +19,7 @@ def createRecipe(newRecipe: NewRecipe):
             RID= uuid.uuid4(),
             RecipeName=newRecipe.RecipeName,
             Description=newRecipe.Description,
+            Categories=newRecipe.Categories,
             Ingredients=newRecipe.Ingredients,
             Images=newRecipe.Images
         )
@@ -61,6 +62,20 @@ def getRecipeByIngredient(ingredient: str):
         return {
             "success" : False,
             "message" : f"Recipe Fetch for Recipe with {ingredient} Failed"
+        }
+
+def getRecipeByCategory(category: str):
+    try:
+        recipeColl = objDatabase["Recipes"]
+        results = recipeColl.find({"Categories" : {"$in" : [category]}})
+        return {
+            "success" : True,
+            "Recipes" : results
+        }
+    except Exception as e:
+        return {
+            "success" : False,
+            "message" : f"Recipe Fetch for Recipe under {category} Failed"
         }
 
 def deleteRecipe(RID: str):

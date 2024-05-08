@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field
 class NewRecipe(BaseModel):
     RecipeName: str = Field()
     Description: str = Field()
+    Categories: List[str] = Field()
     Ingredients: List[str] = Field()
     Images: List[str] = Field()
 
@@ -16,5 +17,6 @@ class Recipe(BaseModel):
     RID: str = Field()
     RecipeName: str = Field()
     Description: str = Field()
+    Categories: List[str] = Field()
     Ingredients: List[str] = Field()
     Images: List[str] = Field()
