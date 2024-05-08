@@ -1,0 +1,13 @@
+localhost:8080/order/create/123e4567-e89b-12d3-a456-426614174000 
+The list of numbers at the end is a dummy UUID for testing purposes.
+You must include a body which is a list of OrderItem, here is an example
+[
+    {
+        "itemId": "Extra 1"
+    },
+    {
+        "itemId": "Extra 2"
+    }
+]
+I believe there is still problems with connecting things as the Order_oid
+and the recipe_order_id are still null.
