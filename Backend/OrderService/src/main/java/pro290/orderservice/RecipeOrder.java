@@ -1,9 +1,6 @@
 package pro290.orderservice;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Array;
-import org.hibernate.annotations.CollectionType;
-import org.hibernate.bytecode.enhance.spi.EnhancementInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,11 +10,15 @@ import java.util.UUID;
 public class RecipeOrder
 {
     @Id
+    @GeneratedValue
     private UUID OID;
+
+    @Column(name = "UID") // Specify the column name in the database
     private UUID UID;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> Items = new ArrayList<>();
+    
     public RecipeOrder(UUID oid, UUID uid, List<OrderItem> items)
     {
         setOID(oid);
