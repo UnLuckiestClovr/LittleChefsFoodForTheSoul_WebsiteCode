@@ -1,0 +1,92 @@
+networks:
+  littlechefrecipes:
+
+services:
+  eureka-registry:
+    restart: always
+    networks:
+      - littlechefrecipes
+    ports:
+      - 15000:8761
+    container_name: LittleChefsEureka
+    image: steeltoeoss/eureka-server
+
+  littlechef-gateway:
+    restart: always
+    networks:
+      - littlechefrecipes
+    ports:
+      - 15010:15010
+    container_name: LittleChefsGateway
+    build: 
+      context: ./Backend/NodeAPIGateway/
+      dockerfile: Dockerfile
+
+  littlechef-mongo:
+    restart: always
+    networks:
+      - littlechefrecipes
+    ports:
+      - 15004:27017
+    container_name: LittleChefsMongo
+    image: mongo
+
+  littlechef-redisstack:
+    restart: always
+    networks:
+      - littlechefrecipes
+    ports:
+      - 15006:6379
+      - 15007:8001
+    container_name: LittleChefsRedisStack
+    image: redis/redis-stack:latest
+
+  littlechef-sql:
+    restart: always
+    networks:
+      - littlechefrecipes
+    ports:
+      - 15008:1433
+    container_name: LittleChefsSQL
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=3comm3rce
+    image: mcr.microsoft.com/mssql/server:2019-latest
+
+  # Services Initialization 
+
+  littlechef-userservice:
+    restart: always
+    networks:
+      - littlechefrecipes
+    ports:
+      - "15020-15029:15011"
+    build: ./Backend/RecipeAPI/
+    replicas: 5
+
+  littlechef-recipeservice:
+    restart: always
+    networks:
+      - littlechefrecipes
+    ports:
+      - "15030-15039:15012"
+    build: ./Backend/UserAPI/
+    replicas: 5
+
+  littlechef-basketservice:
+    restart: always
+    networks:
+      - littlechefrecipes
+    ports:
+      - "15040-15049:15013"
+    build: ./Backend/BasketService/
+    replicas: 5
+  
+  littlechef-orderservice:
+    restart: always
+    networks:
+      - littlechefrecipes
+    ports:
+      - "15050-15059:15014"
+    build: ./Backend/OrderService/
+    replicas: 5

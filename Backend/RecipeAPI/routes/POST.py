@@ -6,7 +6,7 @@ from models.apimodels import NewRecipe
 import dal.mongodb as mongo
 
 router = APIRouter(
-    prefix="/",
+    prefix="/post",
     tags=["recipess"],
     responses={404 : {"description": "Not Found"}}
 )

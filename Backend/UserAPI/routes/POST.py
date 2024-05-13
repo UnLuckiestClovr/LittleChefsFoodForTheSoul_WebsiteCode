@@ -1,12 +1,12 @@
 from fastapi import APIRouter, Depends, HTTPException, Path
 
 from dependencies import get_token_header
-from models.apimodels import Recipe
+from models.apimodels import NewRecipe
 
 import dal.mongodb as mongo
 
 router = APIRouter(
-    prefix="/put",
+    prefix="/post",
     tags=["recipess"],
     responses={404 : {"description": "Not Found"}}
 )
@@ -15,6 +15,3 @@ router = APIRouter(
 async def testEndpoint():
     return "Endpoint Reached!"
 
-@router.put("/")
-async def updateRecipe(body: Recipe = None):
-    return mongo.updateRecipe(body)

@@ -6,15 +6,12 @@ from models.apimodels import Recipe
 import dal.mongodb as mongo
 
 router = APIRouter(
-    prefix="/put",
+    prefix="/search",
     tags=["recipess"],
     responses={404 : {"description": "Not Found"}}
 )
 
-@router.get("/")
+@router.get("/get")
 async def testEndpoint():
     return "Endpoint Reached!"
 
-@router.put("/")
-async def updateRecipe(body: Recipe = None):
-    return mongo.updateRecipe(body)

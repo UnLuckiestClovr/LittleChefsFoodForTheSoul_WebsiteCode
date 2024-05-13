@@ -15,6 +15,3 @@ router = APIRouter(
 async def testEndpoint():
     return "Endpoint Reached!"
 
-@router.put("/")
-async def updateRecipe(body: Recipe = None):
-    return mongo.updateRecipe(body)

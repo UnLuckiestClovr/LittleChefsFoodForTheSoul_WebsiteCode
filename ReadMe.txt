@@ -60,11 +60,12 @@ MongoDB : 15004
 Redis-Stack : 15005 & 15006
 SQLServer : 15007
 
+(If multiple ports [Replication Setting] From port A to port B)
 API Gateway : 15010
-UserService : 15011
-RecipeService : 15012
-BasketService : 15013
-OrderService : 15014
+UserService : 15020 - 15029 
+RecipeService : 15030 - 15039
+BasketService : 15040 - 15049
+OrderService : 15050 - 15059
 
 
 
@@ -79,4 +80,4 @@ docker run -p 15004:27017 -d --name LittleChefsMongoDB --net littlechefrecipes
 docker run -d --name ECommerceDTB_Redis -p 15006:6379 -p 15007:8001 --net littlechefrecipes redis/redis-stack:latest
 (Redis-Stack has two ports, the first is the actual redis DTB, the second is Redis-Insight which is like the MongoCompass of Redis and is accessed through "http://localhost:15007")
 
-docker run --name LittleChefsSQLServer -p 15007:1433 --net ecomm_jsb -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=3comm3rce" -d mcr.microsoft.com/mssql/server:2019-latest
+docker run --name LittleChefsSQLServer -p 15008:1433 --net ecomm_jsb -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=3comm3rce" -d mcr.microsoft.com/mssql/server:2019-latest

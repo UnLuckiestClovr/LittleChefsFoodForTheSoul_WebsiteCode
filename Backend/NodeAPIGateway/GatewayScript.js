@@ -4,7 +4,7 @@ const { Eureka } = require('eureka-js-client');
 const { registerWithEureka } = require('./eureka-helper');
 
 const app = express()
-const proxy = httpProxy.createProxyServer({});  
+const proxy = httpProxy.createProxyServer({});
 
 // Host & Port for Each Service
 const USERAPIHOST = 'localhost';
@@ -17,10 +17,6 @@ const USERAPIPORT = 15011;
 // const ORDERAPIPORT = 15014;
 
 registerWithEureka('Node-Gateway', 'localhost', 15010);
-// registerWithEureka('User-Service-API', USERAPIHOST, USERAPIPORT);
-// registerWithEureka('Recipe-Service-API', RECIPEAPIHOST, RECIPEAPIPORT);
-// registerWithEureka('Basket-Service-API', BASKETAPIHOST, BASKETAPIPORT);
-// registerWithEureka('Order-Service-API', ORDERAPIHOST, ORDERAPIPORT);
 
 app.all('/userapi/*', (req,res) => {
     
