@@ -60,7 +60,9 @@ MongoDB : 15004
 Redis-Stack : 15005 & 15006
 SQLServer : 15007
 
+
 (If multiple ports [Replication Setting] From port A to port B)
+
 API Gateway : 15010
 UserService : 15020 - 15029     [ 15011 internal ]
 RecipeService : 15030 - 15039   [ 15012 internal ]
