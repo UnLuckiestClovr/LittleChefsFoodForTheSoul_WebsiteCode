@@ -62,10 +62,10 @@ SQLServer : 15007
 
 (If multiple ports [Replication Setting] From port A to port B)
 API Gateway : 15010
-UserService : 15020 - 15029 
-RecipeService : 15030 - 15039
-BasketService : 15040 - 15049
-OrderService : 15050 - 15059
+UserService : 15020 - 15029     [ 15011 internal ]
+RecipeService : 15030 - 15039   [ 15012 internal ]
+BasketService : 15040 - 15049   [ 15013 internal ]
+OrderService : 15050 - 15059    [ 15014 internal ]
 
 
 
