@@ -62,6 +62,8 @@ services:
     ports:
       - "15020-15029:15011"
     build: ./Backend/RecipeAPI/
+    environment:
+      - PYTHONUNBUFFERED=0
     replicas: 5
 
   littlechef-recipeservice:
@@ -71,6 +73,8 @@ services:
     ports:
       - "15030-15039:15012"
     build: ./Backend/UserAPI/
+    environment:
+      - PYTHONUNBUFFERED=0
     replicas: 5
 
   littlechef-basketservice:
