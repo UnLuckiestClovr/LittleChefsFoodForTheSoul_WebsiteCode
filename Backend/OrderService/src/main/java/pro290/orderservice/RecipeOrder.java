@@ -7,50 +7,59 @@ import java.util.List;
 import java.util.UUID;
 
 @Entity
-public class RecipeOrder
-{
+public class RecipeOrder {
+
     @Id
     @GeneratedValue
-    private UUID OID;
+    private UUID id;
 
-    @Column(name = "UID") // Specify the column name in the database
-    private UUID UID;
+    @Column(name = "UID")
+    private UUID uid;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<OrderItem> Items = new ArrayList<>();
-    
-    public RecipeOrder(UUID oid, UUID uid, List<OrderItem> items)
-    {
-        setOID(oid);
-        setUID(uid);
-        setItems(items);
+    private List<OrderItem> items = new ArrayList<>();
+
+    // Constructors
+    public RecipeOrder(UUID oid, UUID uid, List<OrderItem> items) {
+        this.id = oid;
+        this.uid = uid;
+        this.items = items;
+        // Ensure bidirectional relationship is maintained
+        for (OrderItem item : items) {
+            item.setOrder(this);
+        }
     }
 
     public RecipeOrder() {
-
     }
 
-    public UUID getOID() {
-        return OID;
+    // Getters and setters
+    public UUID getId() {
+        return id;
     }
 
-    public void setOID(UUID OID) {
-        this.OID = OID;
+    public void setId(UUID id) {
+        this.id = id;
     }
 
-    public UUID getUID() {
-        return UID;
+    public UUID getUid() {
+        return uid;
     }
 
-    public void setUID(UUID UID) {
-        this.UID = UID;
+    public void setUid(UUID uid) {
+        this.uid = uid;
     }
 
     public List<OrderItem> getItems() {
-        return Items;
+        return items;
     }
 
+    
     public void setItems(List<OrderItem> items) {
-        Items = items;
+        this.items = items;
+        // Ensure bidirectional relationship is maintained
+        for (OrderItem item : items) {
+            item.setOrder(this);
+        }
     }
 }
