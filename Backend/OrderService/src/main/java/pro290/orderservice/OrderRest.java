@@ -7,6 +7,7 @@
 
 package pro290.orderservice;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -54,16 +55,31 @@ public class OrderRest
         or.save(order);
     }
 
-    @PutMapping(path = "/update/{OID}")
+    @PutMapping(path = "/{OID}")
     @ResponseStatus(code = HttpStatus.OK)
-    public void UpdateOrder(@RequestBody List<OrderItem> Items, @PathVariable UUID OID)
+    public void UpdateOrder(@RequestBody List<OrderItem> items, @PathVariable UUID OID)
     {
         Optional<RecipeOrder> Oorder = or.findById(OID);
-        Oorder.get().setItems(Items);
+        if(!Oorder.isPresent()) { System.out.println("No Order found"); return; }
+
+        RecipeOrder order = Oorder.get();
+
+        order.getItems().clear();
+
+        for (OrderItem orderItem : items) {
+            orderItem.setOrder(order); // Ensure bidirectional relationship
+        }
 
         System.out.println("Order for OID");
 
-        or.save(Oorder.get());
+        or.save(order);
 
+    }
+
+    @DeleteMapping(path = "/{OID}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public void DeleteOrder(@PathVariable UUID OID)
+    {
+        or.delete(or.findById(OID).get());
     }
 }
