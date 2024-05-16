@@ -12,15 +12,15 @@ services:
     image: steeltoeoss/eureka-server
 
   littlechef-gateway:
+    depends_on:
+      - eureka-registry
     restart: always
     networks:
       - littlechefrecipes
     ports:
       - 15010:15010
     container_name: LittleChefsGateway
-    build: 
-      context: ./Backend/NodeAPIGateway/
-      dockerfile: Dockerfile
+    build: ./Backend/NodeAPIGateway
 
   # Databases
 
@@ -58,39 +58,47 @@ services:
   # Services Initialization 
 
   littlechef-userservice:
+    depends_on:
+      - eureka-registry
     restart: always
     networks:
       - littlechefrecipes
-    ports:
-      - "15020-15029:15011"
-    build: ./Backend/RecipeAPI
-    replicas: 5
+    build: ./Backend/UserAPI
+    deploy:
+      replicas: 5
 
   littlechef-recipeservice:
+    depends_on:
+      - eureka-registry
     restart: always
     networks:
       - littlechefrecipes
-    ports:
-      - "15030-15039:15012"
-    build: ./Backend/UserAPI
+    build: ./Backend/RecipeAPI
     environment:
       - PYTHONUNBUFFERED=0
-    replicas: 5
+    deploy:
+      replicas: 5
 
-  littlechef-basketservice:
-    restart: always
-    networks:
-      - littlechefrecipes
-    ports:
-      - "15040-15049:15013"
-    build: ./Backend/BasketService
-    replicas: 5
+  # littlechef-basketservice:
+  #   depends_on:
+  #    - eureka-registry
+  #   restart: always
+  #   networks:
+  #     - littlechefrecipes
+  #   ports:
+  #     - "15040-15049:15013"
+  #   build: ./Backend/BasketService
+  #   deploy:
+  #      replicas: 5
   
-  littlechef-orderservice:
-    restart: always
-    networks:
-      - littlechefrecipes
-    ports:
-      - "15050-15059:15014"
-    build: ./Backend/OrderService
-    replicas: 5
+  # littlechef-orderservice:
+  #   depends_on:
+  #    - eureka-registry
+  #   restart: always
+  #   networks:
+  #     - littlechefrecipes
+  #   ports:
+  #     - "15050-15059:15014"
+  #   build: ./Backend/OrderService
+  #   deploy:
+  #      replicas: 5

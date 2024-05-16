@@ -4,8 +4,8 @@ from pymongo import ReturnDocument
 
 from models.apimodels import NewUser, User, LoginAttempt
 
-MongoHost = "localhost"
-MongoPort = 15004
+MongoHost = "LittleChefsMongo"
+MongoPort = 27017
 
 MongoClient = pymongo.MongoClient(f"mongodb://{MongoHost}:{MongoPort}/") # Test Connection, Change to Containerized Naming Conventions during Uploading
 

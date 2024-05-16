@@ -1,5 +1,6 @@
 const express = require('express');
 const httpProxy = require('http-proxy');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 const { Eureka } = require('eureka-js-client');
 const eurekahelper = require('./eureka-helper');
 
@@ -7,20 +8,20 @@ const app = express()
 const proxy = httpProxy.createProxyServer({});
 
 // Eureka Setup
-const eurekaHost = (process.env.EUREKA_CLIENT_SERVICEURL_DEFAULTZONE || '127.0.0.1');
-const eurekaPort = 15000;
+const eurekaHost = 'LittleChefsEureka';
+const eurekaPort = 8761;
 const ipAddr = '172.0.0.1';
 
-const client = new Eureka({
+const eurekaClient = new Eureka({
     instance: {
-        app: LittleChefsGateway,
+        app: 'LittleChefsGateway',
         hostName: 'localhost',
         ipAddr: ipAddr,
         port: {
             '$': 15010,
             '@enabled': 'true',
         },
-        vipAddress: LittleChefsGateway,
+        vipAddress: 'LittleChefsGateway',
         dataCenterInfo: {
             '@class': 'com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo',
             name: 'MyOwn',
@@ -36,10 +37,10 @@ const client = new Eureka({
     },
 });
 
-client.logger.level('debug')
+eurekaClient.logger.level('debug')
 
-client.start( error => {
-    console.log(error || "Service Registered: " + serviceHost)
+eurekaClient.start( error => {
+    console.log(error || "Service Registered: LittleChefsGateway")
 });
 
 function exitHandler(options, exitCode) {
@@ -51,12 +52,12 @@ function exitHandler(options, exitCode) {
     }
 }
 
-client.on('deregistered', () => {
+eurekaClient.on('deregistered', () => {
     process.exit();
     console.log('after deregistered');
 })
 
-client.on('started', () => {
+eurekaClient.on('started', () => {
     console.log("Eureka Host: " + eurekaHost);
 })
 
@@ -79,43 +80,93 @@ eurekaClient.start(error => {
 // const BASKETAPIPORT = 15013;
 // const ORDERAPIPORT = 15014;
 
-app.all('/recipeapi/*', (req,res) => {
-    const userBackendInstances = client.getInstancesByAppId('RecipeAPI')
+// Proxy middleware for '/recipeapi/*' route
+app.all('/recipeapi/*', async (req, res) => {
+    try {
+    const userBackendInstances = await eurekaClient.getInstancesByAppId('RecipeAPI');
+
+    console.log("Number of Services: " + userBackendInstances.length)
 
     if (userBackendInstances.length > 0) {
-        const { host, port } = userBackendInstances[Math.floor(Math.random() * userBackendInstances.length)];
+        const randIndex = Math.floor(Math.random() * userBackendInstances.length)
 
-        const reroutePath = req.originalUrl.replace('/recipeapi/','/');
+        console.log("Random Index : " + randIndex)
+
+        const chosenBackend = userBackendInstances[randIndex];
+
+        const reroutePath = req.originalUrl.replace('/recipeapi/', '/');
 
         // Set new Target URL
-        const targetURL = 'http://' + host + ':' + port + reroutePath;
+        const targetURL = 'http://' + chosenBackend.hostName + ':' + chosenBackend.port.$ + reroutePath;
 
-        //Proxy to Backend Service
-        proxy.web(req, res, { target: targetURL })
-    }
-    else {
-        res.status(500).json({ error: 'Issues Connecting to Backend Registered Services' });
-    }
-})
+        console.log("[Target URL]" + targetURL)
 
-app.all('/userapi/*', (req,res) => {
-    const userBackendInstances = client.getInstancesByAppId('UserAPI')
+        // Proxy to Backend Service
+        const proxyMiddleware = createProxyMiddleware({
+        target: targetURL,
+        changeOrigin: true,
+        onProxyReq(proxyReq, req, res) {
+            console.log('Proxying request:', req.method, req.originalUrl);
+        },
+        onProxyRes(proxyRes, req, res) {
+            // Modify response from target server if needed
+        },
+        onError(err, req, res) {
+            console.error('Proxy Error:', err);
+            res.status(500).send('Proxy Error');
+        }
+        });
+        proxyMiddleware(req, res);
+    } else {
+        res.status(500).json({ error: 'No backend services available' });
+    }
+    } catch (error) {
+    console.error('Error fetching backend services from Eureka:', error);
+    res.status(500).json({ error: 'Error fetching backend services from Eureka' });
+    }
+});
+
+
+// Proxy middleware for '/userapi/*' route
+app.all('/userapi/*', async (req, res) => {
+    try {
+    const userBackendInstances = await eurekaClient.getInstancesByAppId('RecipeAPI');
 
     if (userBackendInstances.length > 0) {
-        const { host, port } = userBackendInstances[0];
+        const randIndex = Math.floor(Math.random() * userBackendInstances.length);
+        const chosenBackend = userBackendInstances[randIndex];
 
-        const reroutePath = req.originalUrl.replace('/userapi/','/');
+        const reroutePath = req.originalUrl.replace('/userapi/', '/');
 
-        // Set new Target URL
-        const targetURL = 'http://' + host + ':' + port + reroutePath;
+        // Construct the target URL using the correct properties
+        const targetURL = `http://${chosenBackend.hostName}:${chosenBackend.port.$}${reroutePath}`;
 
-        //Proxy to Backend Service
-        proxy.web(req, res, { target: targetURL })
+        console.log("[Target URL] " + targetURL);
+
+        // Proxy to Backend Service
+        const proxyMiddleware = createProxyMiddleware({
+        target: targetURL,
+        changeOrigin: true,
+        onProxyReq(proxyReq, req, res) {
+            console.log('Proxying request:', req.method, req.originalUrl);
+        },
+        onProxyRes(proxyRes, req, res) {
+            // Modify response from target server if needed
+        },
+        onError(err, req, res) {
+            console.error('Proxy Error:', err);
+            res.status(500).send('Proxy Error');
+        }
+        });
+        proxyMiddleware(req, res);
+    } else {
+        res.status(500).json({ error: 'No backend services available' });
     }
-    else {
-        res.status(500).json({ error: 'Issues Connecting to Backend Registered Services' });
+    } catch (error) {
+    console.error('Error fetching backend services from Eureka:', error);
+    res.status(500).json({ error: 'Error fetching backend services from Eureka' });
     }
-})
+});
 
 proxy.on('error', (err, req, res) => {
     console.error('Proxy error:', err);
