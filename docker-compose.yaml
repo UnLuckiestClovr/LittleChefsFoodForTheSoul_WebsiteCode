@@ -48,12 +48,12 @@ services:
     networks:
       - littlechefrecipes
     ports:
-      - 15008:1433
+      - 15008:3306
     container_name: LittleChefsSQL
     environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=3comm3rce
-    image: mcr.microsoft.com/mssql/server:2019-latest
+      - MYSQL_ROOT_PASSWORD=abc123!!!
+      - MYSQL_DATABASE=orders
+    image: mysql:latest
 
   # Services Initialization 
 
