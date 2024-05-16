@@ -22,6 +22,8 @@ services:
       context: ./Backend/NodeAPIGateway/
       dockerfile: Dockerfile
 
+  # Databases
+
   littlechef-mongo:
     restart: always
     networks:
@@ -61,9 +63,7 @@ services:
       - littlechefrecipes
     ports:
       - "15020-15029:15011"
-    build: ./Backend/RecipeAPI/
-    environment:
-      - PYTHONUNBUFFERED=0
+    build: ./Backend/RecipeAPI
     replicas: 5
 
   littlechef-recipeservice:
@@ -72,7 +72,7 @@ services:
       - littlechefrecipes
     ports:
       - "15030-15039:15012"
-    build: ./Backend/UserAPI/
+    build: ./Backend/UserAPI
     environment:
       - PYTHONUNBUFFERED=0
     replicas: 5
@@ -83,7 +83,7 @@ services:
       - littlechefrecipes
     ports:
       - "15040-15049:15013"
-    build: ./Backend/BasketService/
+    build: ./Backend/BasketService
     replicas: 5
   
   littlechef-orderservice:
@@ -92,5 +92,5 @@ services:
       - littlechefrecipes
     ports:
       - "15050-15059:15014"
-    build: ./Backend/OrderService/
+    build: ./Backend/OrderService
     replicas: 5
