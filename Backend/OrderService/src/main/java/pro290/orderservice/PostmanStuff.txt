@@ -9,5 +9,3 @@ You must include a body which is a list of OrderItem, here is an example
         "itemId": "Extra 2"
     }
 ]
-I believe there is still problems with connecting things as the Order_oid
-and the recipe_order_id are still null.

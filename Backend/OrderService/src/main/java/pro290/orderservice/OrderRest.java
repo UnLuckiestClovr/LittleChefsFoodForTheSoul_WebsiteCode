@@ -7,20 +7,15 @@
 
 package pro290.orderservice;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
-import org.hibernate.cache.spi.support.AbstractReadWriteAccess.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/order")
@@ -44,15 +39,47 @@ public class OrderRest
 
     @PostMapping(path = "/create/{UID}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public void CreateAnOrder(@RequestBody List<OrderItem> Items, @PathVariable UUID UID) 
+    public void CreateAnOrder(@RequestBody List<OrderItem> items, @PathVariable UUID UID) 
     {
         RecipeOrder order = new RecipeOrder();
-        order.setOID(UUID.randomUUID());
-        order.setUID(UID);
-        order.setItems(Items);
-    
-        System.out.println("Received order items: " + order.getItems()); // Help For Debug
-    
+        UUID orderID = UUID.randomUUID();
+        order.setId(orderID);
+        order.setUid(UID);
+
+        for (OrderItem orderItem : items) {
+            orderItem.setOrder(order); // Ensure bidirectional relationship
+        }
+
+        System.out.println("Received order items: " + items); // Debugging
+
         or.save(order);
+    }
+
+    @PutMapping(path = "/{OID}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public void UpdateOrder(@RequestBody List<OrderItem> items, @PathVariable UUID OID)
+    {
+        Optional<RecipeOrder> Oorder = or.findById(OID);
+        if(!Oorder.isPresent()) { System.out.println("No Order found"); return; }
+
+        RecipeOrder order = Oorder.get();
+
+        order.getItems().clear();
+
+        for (OrderItem orderItem : items) {
+            orderItem.setOrder(order); // Ensure bidirectional relationship
+        }
+
+        System.out.println("Order for OID");
+
+        or.save(order);
+
+    }
+
+    @DeleteMapping(path = "/{OID}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public void DeleteOrder(@PathVariable UUID OID)
+    {
+        or.delete(or.findById(OID).get());
     }
 }
