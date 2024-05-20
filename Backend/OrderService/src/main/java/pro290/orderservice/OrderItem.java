@@ -7,12 +7,7 @@
 
 package pro290.orderservice;
 
-
-import java.util.UUID;
-
-
 import jakarta.persistence.Entity;
-import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
@@ -25,14 +20,14 @@ public class OrderItem {
     @GeneratedValue
     private Long id;
 
-    private String itemId;
+    private String RID;
 
     @ManyToOne
     @JoinColumn(name = "recipe_order_id")
     private RecipeOrder order;
 
-    public OrderItem(String itemId) {
-        this.itemId = itemId;
+    public OrderItem(String RID) {
+        this.RID = RID;
     }
 
     // No-arg constructor for JPA
@@ -44,8 +39,8 @@ public class OrderItem {
         return this.id;
     }
 
-    public String getItemId() {
-        return this.itemId;
+    public String getRID() {
+        return this.RID;
     }
 
     public void setOrder(RecipeOrder order) {

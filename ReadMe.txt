@@ -42,12 +42,17 @@ BasketItem {
     "Quantity" : <int>
 }
 
-Order {
-    "OID" : <string>, // Order ID
-    "UID" : <string>, // User ID
-    "Items" : <string[]> // List of Item IDs
+RecipeOrder {
+    "OID" : <UUID>, // Order ID
+    "UID" : <UUID>, // User ID
+    "Items" : <List<OrderItem>> // List of Item IDs
 }
 
+OrderItem {
+    "id" : <Long>, // Item ID
+    "RID" : <String>, // Recipe ID
+    "order" : <RecipeOrder> // A ForeignKey to the RecipeOrder that owns the OrderItem
+}
 ----------------------------------------------
 
 Service Port Info:
@@ -82,4 +87,4 @@ docker run -p 15004:27017 -d --name LittleChefsMongoDB --net littlechefrecipes
 docker run -d --name ECommerceDTB_Redis -p 15006:6379 -p 15007:8001 --net littlechefrecipes redis/redis-stack:latest
 (Redis-Stack has two ports, the first is the actual redis DTB, the second is Redis-Insight which is like the MongoCompass of Redis and is accessed through "http://localhost:15007")
 
-docker run --name LittleChefsSQLServer -p 15008:1433 --net ecomm_jsb -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=3comm3rce" -d mcr.microsoft.com/mssql/server:2019-latest
+docker run --name LittleChefsSQLServer -p 15008:3306 --net littlechefrecipes -e MYSQL_ROOT_PASSWORD=abc123!!! -e MYSQL_DATABASE=orders -d mysql:latest
