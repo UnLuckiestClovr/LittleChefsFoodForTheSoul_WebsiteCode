@@ -7,7 +7,7 @@ import dal.mongodb as mongo
 
 router = APIRouter(
     prefix="/search",
-    tags=["recipess"],
+    tags=["users"],
     responses={404 : {"description": "Not Found"}}
 )
 

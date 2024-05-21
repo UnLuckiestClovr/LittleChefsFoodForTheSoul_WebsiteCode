@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/basket")
+@RequestMapping("")
 public class BasketRest
 {
     @Autowired
@@ -26,13 +26,36 @@ public class BasketRest
         return "Please Work";
     }
 
+    @PostMapping("/create")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public UUID CreateBasket()
+    {
+        UUID holda = UUID.randomUUID();
+        Basket basket = new Basket();
+        basket.setBID(holda);
+        basketService.saveBasket(basket);
+        return holda;
+    }
+
     @PostMapping("/save") // Not Create will need to provide basket BID
-    public void saveBasket(@RequestBody Basket basket) {
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public void SaveBasket(@RequestBody Basket basket) {
         basketService.saveBasket(basket);
     }
 
     @GetMapping("/{id}")
-    public Basket getBasket(@PathVariable UUID id) {
+    @ResponseStatus(code = HttpStatus.OK)
+    public Basket GetBasket(@PathVariable UUID id) {
         return basketService.getBasket(id);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public String DeleteBasket(@PathVariable UUID id)
+    {
+        if(basketService.getBasket(id) == null) return "No Basket Found";
+
+        basketService.deleteBasket(id);
+        return "Basket was deleted";
     }
 }

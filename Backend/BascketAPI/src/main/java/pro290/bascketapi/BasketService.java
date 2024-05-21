@@ -29,4 +29,10 @@ public class BasketService {
         String key = KEY_PREFIX + id.toString();
         return (Basket) redisTemplate.opsForValue().get(key);
     }
+
+    public void deleteBasket(UUID id) {
+        String key = KEY_PREFIX + id.toString();
+        redisTemplate.delete(key);
+    }
+
 }
