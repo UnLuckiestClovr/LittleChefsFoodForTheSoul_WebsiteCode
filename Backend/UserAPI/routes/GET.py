@@ -1,13 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException, Path
 
 from dependencies import get_token_header
-from models.apimodels import Recipe
+from models.apimodels import User
 
 import dal.mongodb as mongo
 
 router = APIRouter(
     prefix="/search",
-    tags=["recipess"],
+    tags=["users"],
     responses={404 : {"description": "Not Found"}}
 )
 
