@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("")
 public class OrderRest
 {
     @Autowired
