@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Path
 
 from dependencies import get_token_header
-from models.apimodels import Recipe
+from models.apimodels import User
 
 import dal.mongodb as mongo
 
