@@ -14,8 +14,8 @@ async def root():
     return {"message": "Hello Bigger Applications!"}
 
 # Configuration for Eureka client
-EurekaHost = "LittleChefsEureka"
-EurekaPort = 8761
+EurekaHost = "localhost"  #"LittleChefsEureka" when dockerized
+EurekaPort = 15000 # 8761
 
 max_retries = 3
 retry_delay = 2  # Delay between retries in seconds
@@ -27,7 +27,7 @@ while attempt < max_retries:
         eureka_client.init(
             eureka_server=f"http://{EurekaHost}:{EurekaPort}/eureka/",
             app_name="UserAPI",
-            instance_host="littlechefsfoodforthesoul_websitecode-littlechef-userservice-",
+            instance_host="localhost", # littlechefsfoodforthesoul_websitecode-littlechef-recipeservice-
             instance_port=15011,
         )
         print("Eureka client initialized successfully.")
