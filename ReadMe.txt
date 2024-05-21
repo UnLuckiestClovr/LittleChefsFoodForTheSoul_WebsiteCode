@@ -58,9 +58,8 @@ OrderItem {
 Service Port Info:
 
 Eureka : 15000
-Kafka : 15001
-Zookeeper : 15002
-Email Handler : 15003
+RabbitMQ : 15001
+Email Handler : 15002
 MongoDB : 15004
 Redis-Stack : 15005 & 15006
 SQLServer : 15007

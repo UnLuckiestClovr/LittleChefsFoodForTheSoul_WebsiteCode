@@ -1,10 +1,20 @@
-import time
+import time, threading
 
 from fastapi import FastAPI, Path, Depends
 from starlette.responses import Response
 from py_eureka_client import eureka_client
 
 from routes import POST, GET, PUT, DELETE
+from business import ESender
+from contextlib import asynccontextmanager
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    producerThread = threading.Thread(target=ESender.produce_rabbitmq_messages)
+    producerThread.start()
+
+    yield
+    print("[Main] Producer has Started within User Service")
 
 app = FastAPI(
     title='Little Chefs User API',
