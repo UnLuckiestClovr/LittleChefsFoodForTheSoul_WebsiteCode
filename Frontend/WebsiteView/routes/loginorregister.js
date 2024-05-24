@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/attemptlogin', async function(req,res,next) {
     try {
-        const response = await axios.post('http://' + GATEWAYHOST +':15010/userapi/loginattempt', req.body);
+        const response = await axios.post('http://' + GATEWAYHOST +':15010/user/post/loginattempt', req.body);
         res.json(response.data)
     } catch (error) {
         res.status(500).json({ error: error.message })
@@ -19,7 +19,7 @@ router.get('/attemptlogin', async function(req,res,next) {
 
 router.get('/register', async function(req,res,next) {
     try {
-        const response = await axios.post('http://' + GATEWAYHOST +':15010/userapi/createuser', req.body);
+        const response = await axios.post('http://' + GATEWAYHOST +':15010/user/post/createuser', req.body);
         res.json(response.data)
     } catch (error) {
         res.status(500).json({ error: error.message })
