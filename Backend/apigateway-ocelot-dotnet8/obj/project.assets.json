@@ -3507,23 +3507,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Kenneth\\.nuget\\packages\\": {},
+    "C:\\Users\\j bolen\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\A Classes\\Q7\\Service-Based Software Architecture Project\\Pro290\\Backend\\apigateway-ocelot-dotnet8\\apigateway-ocelot-dotnet8.csproj",
+      "projectUniqueName": "C:\\Users\\j bolen\\CollegeWork_Year2\\SEN300_ServiceBasedSoftware\\LittleChefsFoodForTheSoul_WebsiteCode\\Backend\\apigateway-ocelot-dotnet8\\apigateway-ocelot-dotnet8.csproj",
       "projectName": "apigateway-ocelot-dotnet8",
-      "projectPath": "C:\\A Classes\\Q7\\Service-Based Software Architecture Project\\Pro290\\Backend\\apigateway-ocelot-dotnet8\\apigateway-ocelot-dotnet8.csproj",
-      "packagesPath": "C:\\Users\\Kenneth\\.nuget\\packages\\",
-      "outputPath": "C:\\A Classes\\Q7\\Service-Based Software Architecture Project\\Pro290\\Backend\\apigateway-ocelot-dotnet8\\obj\\",
+      "projectPath": "C:\\Users\\j bolen\\CollegeWork_Year2\\SEN300_ServiceBasedSoftware\\LittleChefsFoodForTheSoul_WebsiteCode\\Backend\\apigateway-ocelot-dotnet8\\apigateway-ocelot-dotnet8.csproj",
+      "packagesPath": "C:\\Users\\j bolen\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\j bolen\\CollegeWork_Year2\\SEN300_ServiceBasedSoftware\\LittleChefsFoodForTheSoul_WebsiteCode\\Backend\\apigateway-ocelot-dotnet8\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Kenneth\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\j bolen\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -3608,7 +3608,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.202/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
