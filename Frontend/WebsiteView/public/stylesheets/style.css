@@ -84,7 +84,7 @@ table.NavTable td {
 .text-column {
   flex: 1;
   margin-right: 20px;
-  font-size: x-large;
+  font-size: xx-large;
   text-align: center;
 }
 .image-column {
@@ -94,6 +94,6 @@ table.NavTable td {
   align-items: center;
 }
 .image-column img {
-  width: 40%;
+  width: 80%;
   height: auto;
 }
