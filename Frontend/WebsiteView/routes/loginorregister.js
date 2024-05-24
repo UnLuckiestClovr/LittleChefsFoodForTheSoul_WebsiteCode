@@ -11,7 +11,18 @@ router.get('/', function(req, res, next) {
 router.get('/attemptlogin', async function(req,res,next) {
     try {
         const response = await axios.post('http://' + GATEWAYHOST +':15010/user/post/loginattempt', req.body);
-        res.json(response.data)
+
+        if(response !== null) {
+            let Username = response.data.Username
+            let FullName = response.data.FullName
+            let Email = response.data.Email
+            req.session.user = { Username, FullName, Email }
+
+            res.json(response.data)
+        }
+        else {
+            res.status(500).json({ message: "Invalid Login Credentials" })
+        }
     } catch (error) {
         res.status(500).json({ error: error.message })
     }

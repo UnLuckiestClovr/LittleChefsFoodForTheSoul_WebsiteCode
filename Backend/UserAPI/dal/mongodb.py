@@ -79,9 +79,13 @@ def AttemptLogin(Attempt: LoginAttempt):
         userColl = objDatabase["Users"]
         passColl = objDatabase["PassStorage"]
 
-        usernameResult = dict(json.dumps(userColl.find_one({"Username" : Attempt.Username}))).get("UID", None)
+        userData = dict(json.dumps(userColl.find_one({"Username" : Attempt.Username})))
+        usernameResult = userData.get("UID", None)
         passwordResult = dict(json.dumps(passColl.find_one({"Password" : Attempt.Password}))).get("UID", None)
 
-        return (usernameResult == passwordResult)
+        if (usernameResult == None or passwordResult == None):
+            return None
+        elif (usernameResult == passwordResult):
+            return userData
     except:
         return False

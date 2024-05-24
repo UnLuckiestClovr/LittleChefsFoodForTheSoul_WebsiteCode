@@ -36,6 +36,20 @@ def createRecipe(newRecipe: NewRecipe):
             "message" : f"Recipe Creation Failed"
         }
 
+def getAllRecipes():
+    try:
+        recipeColl = objDatabase["Recipes"]
+        result = recipeColl.find()
+        return {
+            "success" : True,
+            "Recipe" : result
+        }
+    except Exception as e:
+        return {
+            "success" : False,
+            "message" : f"Recipe Fetch for Recipe {RID} Failed"
+        }
+
 def getRecipeByID(RID: str):
     try:
         recipeColl = objDatabase["Recipes"]

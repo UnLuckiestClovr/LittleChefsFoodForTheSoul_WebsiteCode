@@ -15,6 +15,10 @@ router = APIRouter(
 async def testEndpoint():
     return "Endpoint Reached!"
 
+@router.get("/all")
+async def getRecipeByRID():
+    return mongo.getAllRecipes()
+
 @router.get("/id/{RID}")
 async def getRecipeByRID(RID: str = Path(..., alias='RID')):
     return mongo.getRecipeByID(RID)
