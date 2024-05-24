@@ -4,5 +4,37 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    h1(id="outerHeader")
+      img(
+        
+        id="Logo"
+        src="/images/chef-rat.jpg"
+      )
+    table(class="NavTable")
+      tbody 
+        tr 
+          td
+            a(href="/") Home
+          td
+            a(href="/SearchPage") Search For A Recipe
+          td
+            if loggedInBool == true
+              a(id="userProfile", href="/Profile") Profile
+            else 
+              a(id="userLoginOrReg", href="/LoginorRegister") Login / Register
+    p
     article(id="MainContainer")
       block content
+  footer 
+    table(class="NavTable")
+      tbody 
+        tr 
+          td
+            a(href="/") Home
+          td
+            a(href="/SearchPage") Search For A Recipe
+          td
+            if loggedInBool == true
+              a(id="userProfile", href="/Profile") Profile
+            else 
+              a(id="userLoginOrReg", href="/LoginorRegister") Login / Register

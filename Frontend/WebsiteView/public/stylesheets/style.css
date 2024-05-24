@@ -8,8 +8,47 @@ a {
   color: #00B7FF;
 }
 
+#outerHeader {
+  width:100%;
+  display: flex;
+  justify-content: center;
+}
+
+#outerHeader.img {
+  width: 50%;
+}
+
 #MainContainer {
   color: #E5E7E6;
   background-color: #141301e2;
   background-blend-mode: overlay;
+}
+
+table.NavTable {
+  width:100%;
+  background-color: #141301e2;
+  border-collapse: collapse;
+  border-width: 2px;
+  border-color: #B80C09;
+  border-style: dotted;
+  color: #FFFFFF;
+  text-align: center;
+  align-content: center;
+  font-size: larger;
+}
+
+table.NavTable {
+  margin-top: 10%;
+}
+
+table.NavTable td * {
+  font-family: 'Cinzel', sans-serif;
+  color: whitesmoke;
+}
+
+table.NavTable td {
+  border-width: 2px;
+  border-color: #B80C09;
+  border-style: dotted;
+  padding: 3px;
 }
