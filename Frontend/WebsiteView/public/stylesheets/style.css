@@ -13,3 +13,13 @@ a {
   background-color: #141301e2;
   background-blend-mode: overlay;
 }
+
+#PageName{
+  text-align: center;
+  font-size:xx-large;
+}
+
+#WelcomeText{
+  text-align: center;
+  font-size: large;
+}
