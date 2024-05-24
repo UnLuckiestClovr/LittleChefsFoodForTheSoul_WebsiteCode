@@ -1,8 +1,15 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url(../images/RAT.jpg);
 }
 
 a {
   color: #00B7FF;
+}
+
+#MainContainer {
+  color: #E5E7E6;
+  background-color: #141301e2;
+  background-blend-mode: overlay;
 }
