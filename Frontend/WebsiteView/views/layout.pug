@@ -3,6 +3,7 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src="/javascripts/edm.js", defer)
   body
     h1(id="outerHeader")
       img(
@@ -15,12 +16,12 @@ html
           td
             a(href="/") Home
           td
-            a(href="/SearchPage") Search For A Recipe
+            a(href="/search") Search For A Recipe
           td
             if loggedInBool == true
-              a(id="userProfile", href="/Profile") Profile
+              a(id="userProfile", href="/profile") Profile
             else 
-              a(id="userLoginOrReg", href="/LoginorRegister") Login / Register
+              a(id="userLoginOrReg", href="/loginorregister") Login / Register
     p
     article(id="MainContainer")
       block content
@@ -31,7 +32,7 @@ html
           td
             a(href="/") Home
           td
-            a(href="/SearchPage") Search For A Recipe
+            a(href="/search") Search For A Recipe
           td
             if loggedInBool == true
               a(id="userProfile", href="/Profile") Profile
