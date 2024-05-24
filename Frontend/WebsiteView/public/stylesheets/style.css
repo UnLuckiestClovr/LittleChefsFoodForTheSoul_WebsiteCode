@@ -59,8 +59,32 @@ table.NavTable td {
   font-size:xx-large;
 }
 
-#WelcomeText{
+#WelcomeText {
   color: #B7b5B3;
   text-align: center;
   font-size: large;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ccc;
+  padding: 20px;
+}
+.text-column {
+  flex: 1;
+  margin-right: 20px;
+  font-size: x-large;
+  text-align: center;
+}
+.image-column {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.image-column img {
+  width: 40%;
+  height: auto;
 }
