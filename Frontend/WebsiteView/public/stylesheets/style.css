@@ -14,8 +14,9 @@ a {
   justify-content: center;
 }
 
-#outerHeader.img {
-  width: 50%;
+#Logo {
+  border: 5px solid #560504;
+  width: 20%;
 }
 
 #MainContainer {
@@ -24,7 +25,6 @@ a {
   background-blend-mode: overlay;
 }
 
-<<<<<<< HEAD
 table.NavTable {
   width:100%;
   background-color: #141301e2;
@@ -52,7 +52,8 @@ table.NavTable td {
   border-color: #B80C09;
   border-style: dotted;
   padding: 3px;
-=======
+}
+
 #PageName{
   text-align: center;
   font-size:xx-large;
@@ -62,5 +63,4 @@ table.NavTable td {
   color: #B7b5B3;
   text-align: center;
   font-size: large;
->>>>>>> d5f22f41483a1a90e679d5354e43e429f89eaa64
 }
