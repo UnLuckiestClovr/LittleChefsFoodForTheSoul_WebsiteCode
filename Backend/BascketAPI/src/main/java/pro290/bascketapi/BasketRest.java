@@ -45,6 +45,7 @@ public class BasketRest
     @PostMapping("/save") // Not Create will need to provide basket BID
     @ResponseStatus(code = HttpStatus.CREATED)
     public void SaveBasket(@RequestBody Basket basket) {
+        basket.setUID(basketService.getBasket(basket.getBID()).getUID());
         basketService.saveBasket(basket);
     }
 
