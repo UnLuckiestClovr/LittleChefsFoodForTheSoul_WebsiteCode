@@ -26,13 +26,18 @@ public class BasketRest
         return "Please Work";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/create/{id}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public UUID CreateBasket()
+    public UUID CreateBasket(@PathVariable String id)
     {
+        if(id == null || id == "")
+        {
+            id = "Blank";
+        }
         UUID holda = UUID.randomUUID();
         Basket basket = new Basket();
         basket.setBID(holda);
+        basket.setUID(id);
         basketService.saveBasket(basket);
         return holda;
     }
@@ -57,5 +62,12 @@ public class BasketRest
 
         basketService.deleteBasket(id);
         return "Basket was deleted";
+    }
+
+    @PostMapping("/{id}")
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public void AddUserID(@PathVariable UUID id)
+    {
+
     }
 }
