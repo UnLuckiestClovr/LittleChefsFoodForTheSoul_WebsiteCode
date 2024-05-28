@@ -21,12 +21,12 @@ router.get('/', async function(req, res, next) {
 });
 
 router.get('/ingredient/:ingredient', async function(req, res, next) {
-    const data = await fetchData(`http://${GatewayHost}:${GatewayPort}/ingredient/${req.params.ingredient}`);
+    const data = await fetchData(`http://${GatewayHost}:${GatewayPort}/recipe/search/ingredient/${req.params.ingredient}`);
     res.render('search', { title: 'Little Chefs', recipes: data.Recipes });
 });
 
 router.get('/category/:category', async function(req, res, next) {
-    const data = await fetchData(`http://${GatewayHost}:${GatewayPort}/search/category/${req.params.category}`);
+    const data = await fetchData(`http://${GatewayHost}:${GatewayPort}/recipe/search/category/${req.params.category}`);
     res.render('search', { title: 'Little Chefs', recipes: data.Recipes });
 });
 
