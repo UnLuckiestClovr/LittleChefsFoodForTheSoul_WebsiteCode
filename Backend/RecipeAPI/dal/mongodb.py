@@ -16,12 +16,12 @@ objDatabase = MongoClient["LittleChefsRecipes"]
 def createRecipe(newRecipe: NewRecipe):
     try:
         recipe = Recipe(
-            RID= uuid.uuid4(),
+            RID= str(uuid.uuid4()),
             RecipeName=newRecipe.RecipeName,
             Description=newRecipe.Description,
             Categories=newRecipe.Categories,
             Ingredients=newRecipe.Ingredients,
-            Images=newRecipe.Images
+            Image=newRecipe.Image
         )
 
         recipeColl = objDatabase["Recipes"]
@@ -33,45 +33,69 @@ def createRecipe(newRecipe: NewRecipe):
     except Exception as e:
         return {
             "success" : False,
-            "message" : f"Recipe Creation Failed"
+            "message" : f"Recipe Creation Failed : {e}"
         }
 
 def getAllRecipes():
     try:
         recipeColl = objDatabase["Recipes"]
-        result = recipeColl.find()
-        return {
-            "success" : True,
-            "Recipe" : result
-        }
+        result = recipeColl.find()  # Convert cursor to list
+        recipes = [{k: v for k, v in item.items() if k != "_id"} for item in result]
+        if not result:  # Check if result is empty
+            return {
+                "success": True,
+                "Recipes": []
+            }
+        else:
+            return {
+                "success": True,
+                "Recipes": recipes
+            }
     except Exception as e:
         return {
-            "success" : False,
-            "message" : f"Recipe Fetch for Recipe {RID} Failed"
+            "success": False,
+            "message": "Recipe Fetch Failed"
         }
+
 
 def getRecipeByID(RID: str):
     try:
         recipeColl = objDatabase["Recipes"]
-        result = recipeColl.find_one({"RID" : RID})
-        return {
-            "success" : True,
-            "Recipe" : result
-        }
+        result = recipeColl.find_one({"RID": RID})
+        if result:
+            # Convert ObjectId to string for serialization
+            if "_id" in result:
+                result["_id"] = str(result["_id"])
+            return {
+                "success": True,
+                "Recipe": result
+            }
+        else:
+            return {
+                "success": False,
+                "message": f"No recipe found for ID: {RID}"
+            }
     except Exception as e:
         return {
-            "success" : False,
-            "message" : f"Recipe Fetch for Recipe {RID} Failed"
+            "success": False,
+            "message": f"Recipe Fetch for Recipe {RID} Failed: {str(e)}"
         }
 
 def getRecipeByIngredient(ingredient: str):
     try:
         recipeColl = objDatabase["Recipes"]
-        results = recipeColl.find({"Ingredients" : {"$in" : [ingredient]}})
-        return {
-            "success" : True,
-            "Recipes" : results
-        }
+        result = list(recipeColl.find({"Ingredients" : {"$in" : [ingredient]}}))
+        recipes = [{k: v for k, v in item.items() if k != "_id"} for item in result]
+        if not result:  # Check if result is empty
+            return {
+                "success": True,
+                "Recipes": []
+            }
+        else:
+            return {
+                "success": True,
+                "Recipes": recipes
+            }
     except Exception as e:
         return {
             "success" : False,
@@ -81,11 +105,18 @@ def getRecipeByIngredient(ingredient: str):
 def getRecipeByCategory(category: str):
     try:
         recipeColl = objDatabase["Recipes"]
-        results = recipeColl.find({"Categories" : {"$in" : [category]}})
-        return {
-            "success" : True,
-            "Recipes" : results
-        }
+        result = list(recipeColl.find({"Categories" : {"$in" : [category]}}))
+        recipes = [{k: v for k, v in item.items() if k != "_id"} for item in result]
+        if not result:  # Check if result is empty
+            return {
+                "success": True,
+                "Recipes": []
+            }
+        else:
+            return {
+                "success": True,
+                "Recipes": recipes
+            }
     except Exception as e:
         return {
             "success" : False,

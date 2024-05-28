@@ -17,17 +17,17 @@ async function fetchData(url) {
 
 router.get('/', async function(req, res, next) {
     const data = await fetchData(`http://${GatewayHost}:${GatewayPort}/search/all`);
-    res.render('search', { title: 'Little Chefs', recipes: data });
+    res.render('search', { title: 'Little Chefs', recipes: data.Recipes });
 });
 
 router.get('/ingredient/:ingredient', async function(req, res, next) {
     const data = await fetchData(`http://${GatewayHost}:${GatewayPort}/recipe/search/all`);
-    res.render('search', { title: 'Little Chefs', recipes: data });
+    res.render('search', { title: 'Little Chefs', recipes: data.Recipes });
 });
 
 router.get('/category/:category', async function(req, res, next) {
     const data = await fetchData(`http://${GatewayHost}:${GatewayPort}/recipe/search/all`);
-    res.render('search', { title: 'Little Chefs', recipes: data });
+    res.render('search', { title: 'Little Chefs', recipes: data.Recipes });
 });
 
 module.exports = router;

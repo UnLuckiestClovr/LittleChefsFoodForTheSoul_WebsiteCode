@@ -2,11 +2,19 @@ extends layout
 
 block content
   h1 Search For Recipes
-  each item in recipes
-    h3(id=item.RID) item.RecipeName
-    p item.Description
-    br
-    each ingredient in item.Ingredients 
-      p ingredient
+  if recipes.length > 0
+    .recipe-container
+      each item in recipes
+        .recipe 
+          .object-container
+            .left-object
+              h3(id=item.RID)= item.RecipeName
+              p= item.Description
+              br
+              a(href="/recipe/"+item.RID) View Recipe
+            .right-object
+              img(class="RecipeImage",src=item.Image)
+  - else 
+    h3 No Recipes Found
   br
   br

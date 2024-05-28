@@ -11,7 +11,7 @@ class NewRecipe(BaseModel):
     Description: str = Field()
     Categories: List[str] = Field()
     Ingredients: List[str] = Field()
-    Images: List[str] = Field()
+    Image: str = Field()
 
 class Recipe(BaseModel):
     RID: str = Field()
@@ -19,4 +19,4 @@ class Recipe(BaseModel):
     Description: str = Field()
     Categories: List[str] = Field()
     Ingredients: List[str] = Field()
-    Images: List[str] = Field()
+    Image: str = Field()
