@@ -30,7 +30,7 @@ block content
               h3(id=item.RID)= item.RecipeName
               p= item.Description
               br
-              a(href="/recipe/"+item.RID) View Recipe
+              a(href="/recipe/"+item.RID, class="PrettyButton") View Recipe
             .right-object
               img(class="RecipeImage",src=item.Image)
   - else 
