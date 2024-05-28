@@ -13,10 +13,11 @@ router.get('/attemptlogin', async function(req,res,next) {
         const response = await axios.post('http://' + GATEWAYHOST +':15010/user/post/loginattempt', req.body);
 
         if(response !== null) {
+            let UID = response.data.UID
             let Username = response.data.Username
             let FullName = response.data.FullName
             let Email = response.data.Email
-            req.session.user = { Username, FullName, Email }
+            req.session.user = { UID, Username, FullName, Email }
 
             res.json(response.data)
         }
