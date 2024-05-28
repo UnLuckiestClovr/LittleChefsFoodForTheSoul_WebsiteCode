@@ -16,16 +16,34 @@ async function fetchData(url) {
 }
 
 router.get('/', async function(req, res, next) {
+    let boolLog = false;
+    if(req.session.user.UID === null || req.session.user.UID === undefined) {
+        boolLog = false
+    } else {
+        boolLog = true;
+    }
     const data = await fetchData(`http://${GatewayHost}:${GatewayPort}/recipe/search/all`);
-    res.render('search', { title: 'Little Chefs', recipes: data.Recipes });
+    res.render('search', { title: 'Little Chefs', recipes: data.Recipes, loggedIn : boolLog });
 });
 
 router.get('/ingredient/:ingredient', async function(req, res, next) {
+    let boolLog = false;
+    if(req.session.user.UID === null || req.session.user.UID === undefined) {
+        boolLog = false
+    } else {
+        boolLog = true;
+    }
     const data = await fetchData(`http://${GatewayHost}:${GatewayPort}/recipe/search/ingredient/${req.params.ingredient}`);
     res.render('search', { title: 'Little Chefs', recipes: data.Recipes });
 });
 
 router.get('/category/:category', async function(req, res, next) {
+    let boolLog = false;
+    if(req.session.user.UID === null || req.session.user.UID === undefined) {
+        boolLog = false
+    } else {
+        boolLog = true;
+    }
     const data = await fetchData(`http://${GatewayHost}:${GatewayPort}/recipe/search/category/${req.params.category}`);
     res.render('search', { title: 'Little Chefs', recipes: data.Recipes });
 });

@@ -2,40 +2,90 @@ var express = require('express');
 var router = express.Router();
 const axios = require('axios')
 
+const bcrypt = require('bcrypt')
+
+async function hashPassword(plainTextPswrd) {
+    try {
+        bcrypt.genSalt(10, function(err, salt) {
+            bcrypt.hash(plainTextPswrd, salt, function(err, hash) {
+                console.log(hash)
+                return hash
+            })
+        })
+    } catch (error) {
+        console.log(error)
+        console.log("CRUD ~ 101")
+    }
+}
+
 const GATEWAYHOST = 'localhost';
 
 router.get('/', function(req, res, next) {
-    res.render('loginorregister', { title: 'Little Chefs' });
+    let boolLog = false;
+    console.log(req.session.user)
+    if (req.session.user === null || req.session.user === undefined) {
+        res.render('loginorregister', { title: 'Little Chefs', loggedIn : boolLog });
+    } else {
+        boolLog = true;
+        console.log('Session data in GET /:', req.session.user);
+        res.render('profile', { title: 'Little Chefs', userData: req.session.user, loggedIn: boolLog });
+    }    
 });
 
-router.get('/attemptlogin', async function(req,res,next) {
+router.post('/attemptlogin', async function(req,res,next) {
     try {
-        const response = await axios.post('http://' + GATEWAYHOST +':15010/user/post/loginattempt', req.body);
+        const loginAttempt = {
+            Username : req.body.Username,
+            Password : req.body.Password
+        }
+
+        const response = await axios.post('http://' + GATEWAYHOST +':15010/user/post/loginattempt', loginAttempt);
 
         if(response !== null) {
+            try {
             let UID = response.data.UID
             let Username = response.data.Username
             let FullName = response.data.FullName
             let Email = response.data.Email
             req.session.user = { UID, Username, FullName, Email }
+            console.log('Session after login:', req.session);
 
             res.json(response.data)
+            } catch (error) {
+                console.log(error)
+            }
         }
         else {
             res.status(500).json({ message: "Invalid Login Credentials" })
-        }
+        }   
     } catch (error) {
         res.status(500).json({ error: error.message })
     }
 });
 
-router.get('/register', async function(req,res,next) {
+router.post('/register', async function(req, res, next) {
     try {
-        const response = await axios.post('http://' + GATEWAYHOST +':15011/post/createuser', req.body);
-        console.log(response.data)
-        res.json(response.data)   
+        bcrypt.genSalt(10, async function(err, salt) {
+            bcrypt.hash(req.body.Password, salt, async function(err, hash) {
+                console.log(hash)
+
+                const hashedPassword = `${salt}:::${hash}`
+
+                const newUser = {
+                    Username : req.body.Username,
+                    Email : req.body.Email,
+                    FullName : req.body.FullName,
+                    Password : hashedPassword
+                }
+
+                const response = await axios.post('http://' + GATEWAYHOST + ':15010/user/post/createuser', newUser);
+                console.log('Response from FastAPI:', response.data);
+                res.json(response.data);
+            })
+        })        
     } catch (error) {
-        res.status(500).json({ error: error.message })
+        console.log('Error:', error.message);
+        res.status(500).json({ error: error.message });
     }
 });
 
@@ -46,7 +96,7 @@ router.get('/logout', function(req,res,next) {
             console.error('Error Logging Out:', err)
             res.sendStatus(500)
         } else {
-            res.redirect('/LoginorRegister')
+            res.redirect('/loginorregister')
         }
     })
 })

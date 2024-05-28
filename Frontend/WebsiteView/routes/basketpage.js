@@ -1,11 +1,12 @@
 var express = require('express');
 var router = express.Router();
+const axios = require('axios')
 
 router.get('/', async function(req, res, next) {
     let boolLog = false
-    if(req.session === undefined) {
+    if(req.session.user === null || req.session.user === undefined) {
         boolLog = false
-        res.render("loginorregister", { title: 'Little Chefs' })
+        res.render("loginorregister", { title: 'Little Chefs', loggedIn:boolLog })
     } else {
         const response = {data: null}
         boolLog = (req.session.user !== null && req.session.user !== undefined)
