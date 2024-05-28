@@ -3,7 +3,7 @@ extends layout
 block content
   h1 Search For Recipes
   each item in recipes
-    h3(id=recipe.RID) item.RecipeName
+    h3(id=item.RID) item.RecipeName
     p item.Description
     br
     each ingredient in item.Ingredients 

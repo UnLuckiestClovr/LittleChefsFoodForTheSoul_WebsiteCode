@@ -81,7 +81,7 @@ docker network create littlechefrecipes
 
 docker run -p 15000:8761 -d --name LittleChefsEureka --net littlechefrecipes -d steeltoeoss/eureka-server
 
-docker run -p 15004:27017 -d --name LittleChefsMongoDB --net littlechefrecipes
+docker run -p 15004:27017 -d --name LittleChefsMongoDB --net littlechefrecipes -d mongo:latest
 
 docker run -d --name ECommerceDTB_Redis -p 15006:6379 -p 15007:8001 --net littlechefrecipes redis/redis-stack:latest
 (Redis-Stack has two ports, the first is the actual redis DTB, the second is Redis-Insight which is like the MongoCompass of Redis and is accessed through "http://localhost:15007")
