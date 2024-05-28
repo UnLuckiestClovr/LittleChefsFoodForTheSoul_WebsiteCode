@@ -3,7 +3,7 @@ var router = express.Router();
 var axios = require('axios');
 
 GatewayHost = "localhost"
-GatewayPort = 5076
+GatewayPort = 15010
 
 router.get('/:RID', async function(req, res, next) {
     const response = await axios.get("http://" + GatewayHost + ":" + GatewayPort + "/recipe/search/id/" + req.params.RID);

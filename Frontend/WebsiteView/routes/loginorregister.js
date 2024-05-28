@@ -31,8 +31,9 @@ router.get('/attemptlogin', async function(req,res,next) {
 
 router.get('/register', async function(req,res,next) {
     try {
-        const response = await axios.post('http://' + GATEWAYHOST +':15010/user/post/createuser', req.body);
-        res.json(response.data)
+        const response = await axios.post('http://' + GATEWAYHOST +':15011/post/createuser', req.body);
+        console.log(response.data)
+        res.json(response.data)   
     } catch (error) {
         res.status(500).json({ error: error.message })
     }
