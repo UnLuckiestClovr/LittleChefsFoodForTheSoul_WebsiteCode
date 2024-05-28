@@ -12,15 +12,19 @@ services:
     image: steeltoeoss/eureka-server
 
   littlechef-gateway:
-    depends_on:
-      - eureka-registry
+    container_name: littlechef-gateway
+    build:
+      context: ./apigateway-ocelot-dotnet8
+      dockerfile: Dockerfile
+    image: gateway:1
     restart: always
+    hostname: littlechef-gateway
+    ports:
+      - 15010:8080
     networks:
       - littlechefrecipes
-    ports:
-      - 15010:15010
-    container_name: LittleChefsGateway
-    build: ./Backend/NodeAPIGateway
+    depends_on:
+      - eureka-registry  
 
   # Databases
 

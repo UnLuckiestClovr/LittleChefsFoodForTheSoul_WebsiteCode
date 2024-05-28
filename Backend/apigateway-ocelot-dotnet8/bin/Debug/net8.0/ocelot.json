@@ -1,7 +1,7 @@
 {
   "Routes": [
     {
-      "ServiceName": "UserService",
+      "ServiceName": "userapi",
       "DownstreamPathTemplate": "/{everything}",
       "UpstreamPathTemplate": "/user/{everything}",
       "UpstreamHttpMethod": [
@@ -20,7 +20,7 @@
       }
     },
     {
-      "ServiceName": "BasketService",
+      "ServiceName": "BascketAPI",
       "DownstreamPathTemplate": "/{everything}",
       "UpstreamPathTemplate": "/basket/{everything}",
       "UpstreamHttpMethod": [
@@ -39,7 +39,7 @@
       }
     },
     {
-      "ServiceName": "RecipeService",
+      "ServiceName": "RecipeAPI",
       "DownstreamPathTemplate": "/{everything}",
       "UpstreamPathTemplate": "/recipe/{everything}",
       "UpstreamHttpMethod": [
