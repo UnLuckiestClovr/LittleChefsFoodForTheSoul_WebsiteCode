@@ -83,7 +83,7 @@ docker run -p 15000:8761 -d --name LittleChefsEureka --net littlechefrecipes -d 
 
 docker run -p 15004:27017 -d --name LittleChefsMongoDB --net littlechefrecipes -d mongo:latest
 
-docker run -d --name ECommerceDTB_Redis -p 15006:6379 -p 15007:8001 --net littlechefrecipes redis/redis-stack:latest
+docker run -d --name LittleChefsRedis -p 15006:6379 -p 15007:8001 --net littlechefrecipes redis/redis-stack:latest
 (Redis-Stack has two ports, the first is the actual redis DTB, the second is Redis-Insight which is like the MongoCompass of Redis and is accessed through "http://localhost:15007")
 
 docker run --name LittleChefsSQLServer -p 15008:3306 --net littlechefrecipes -e MYSQL_ROOT_PASSWORD=abc123!!! -e MYSQL_DATABASE=orders -d mysql:latest

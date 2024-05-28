@@ -3,7 +3,7 @@ var router = express.Router();
 var axios = require('axios');
 
 GatewayHost = "127.0.0.1"
-GatewayPort = 5076
+GatewayPort = 15010
 
 async function fetchData(url) {
     try {
