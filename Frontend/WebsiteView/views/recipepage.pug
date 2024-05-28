@@ -1,0 +1,10 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+  h3(id=recipe.RID) recipe.RecipeName
+    p recipe.Description
+    br
+    each ingredient in recipe.Ingredients 
+      p ingredient

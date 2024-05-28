@@ -2,9 +2,11 @@ extends layout
 
 block content
   h1 Search For Recipes
-  each item in data
-    h3= item.RecipeName
-    p= item.Description
+  each item in recipes
+    h3(id=recipe.RID) item.RecipeName
+    p item.Description
+    br
     each ingredient in item.Ingredients 
-      p= ingredient
+      p ingredient
+  br
   br
