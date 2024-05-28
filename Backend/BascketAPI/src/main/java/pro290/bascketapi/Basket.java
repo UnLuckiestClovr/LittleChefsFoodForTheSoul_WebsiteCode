@@ -21,7 +21,7 @@ public class Basket {
     @JsonProperty("items")
     private List<BasketItem> items;
 
-    @JsonProperty("UserID")
+    @JsonProperty("UID")
     private String UID;
 
     // Default constructor
