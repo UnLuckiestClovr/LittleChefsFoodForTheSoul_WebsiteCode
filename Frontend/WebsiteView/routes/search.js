@@ -3,7 +3,7 @@ var router = express.Router();
 var axios = require('axios');
 
 GatewayHost = "127.0.0.1"
-GatewayPort = 15012
+GatewayPort = 5076
 
 async function fetchData(url) {
     try {
@@ -16,7 +16,7 @@ async function fetchData(url) {
 }
 
 router.get('/', async function(req, res, next) {
-    const data = await fetchData(`http://${GatewayHost}:${GatewayPort}/search/all`);
+    const data = await fetchData(`http://${GatewayHost}:${GatewayPort}/recipe/search/all`);
     res.render('search', { title: 'Little Chefs', recipes: data.Recipes });
 });
 
