@@ -21,6 +21,9 @@ public class Basket {
     @JsonProperty("items")
     private List<BasketItem> items;
 
+    @JsonProperty("UserID")
+    private String UID;
+
     // Default constructor
     public Basket() {}
 
@@ -39,5 +42,13 @@ public class Basket {
 
     public void setItems(List<BasketItem> items) {
         this.items = items;
+    }
+
+    public String getUID() {
+        return UID;
+    }
+
+    public void setUID(String UID) {
+        this.UID = UID;
     }
 }
