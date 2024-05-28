@@ -2,6 +2,25 @@ extends layout
 
 block content
   h1 Search For Recipes
+  br
+  br
+  .dropdown
+      button.dropbtn Select a Category to Search Through...
+      .dropdown-content
+        a(href='/search/category/Breakfast') Breakfast
+        a(href='/search/category/Lunch') Lunch
+        a(href='/search/category/Dinner') Dinner 
+        a(href='/search/category/Dessert') Dessert
+        a(href='/search/category/Vegan') Vegan
+        a(href='/search/category/Meat') Meat
+        a(href='/search/category/LactoseIntolerant') Lactose Intolerant
+        a(href='/search/category/NoPeanut') No Peanut
+        a(href='/search/category/Salad') Salad
+        a(href='/search/category/Soup') Soup
+        a(href='/search/category/Budget') Budget
+  hr
+  br
+
   if recipes.length > 0
     .recipe-container
       each item in recipes
