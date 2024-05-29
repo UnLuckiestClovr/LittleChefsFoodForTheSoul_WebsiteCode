@@ -1,9 +1,14 @@
 extends layout 
 
 block content
-    h1(id=recipe.RID)= recipe.RecipeName
-    p= recipe.Description
+    if orders.length > 0
+        .recipe-container
+        each item in orders
+            .order 
+                h3(id=item.OID)= item.OID
+                    br
+                    a(href="/orders/"+item.OID, class="PrettyButton") View Order Details 
+    - else 
+        h3 No Orders Found
     br
-    h2 Ingredients:
-    each ingredient in recipe.Ingredients 
-        p= ingredient
+    br
