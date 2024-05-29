@@ -2,14 +2,14 @@ networks:
   littlechefrecipes:
 
 services:
-  eureka-registry:
+  LittleChefsEureka:
     restart: always
     networks:
       - littlechefrecipes
     ports:
       - 15000:8761
     container_name: LittleChefsEureka
-    hostname: eureka-registry
+    hostname: LittleChefsEureka
     image: steeltoeoss/eureka-server
 
   littlechef-gateway:
@@ -25,7 +25,7 @@ services:
     networks:
       - littlechefrecipes
     depends_on:
-      - eureka-registry  
+      - LittleChefsEureka 
 
   # Databases
 
@@ -64,7 +64,7 @@ services:
 
   littlechef-userservice:
     depends_on:
-      - eureka-registry
+      - LittleChefsEureka
     restart: always
     networks:
       - littlechefrecipes
@@ -74,7 +74,7 @@ services:
 
   littlechef-recipeservice:
     depends_on:
-      - eureka-registry
+      - LittleChefsEureka
     restart: always
     networks:
       - littlechefrecipes
@@ -86,7 +86,7 @@ services:
 
   littlechef-bascket-api:
     depends_on:
-      - eureka-registry
+      - LittleChefsEureka
       - littlechef-gateway
       - littlechef-redisstack
     restart: always
@@ -94,16 +94,14 @@ services:
       - littlechefrecipes
     build: ./Backend/BascketAPI
     environment:
-      - EUREKA_HOST=eureka-registry
+      - EUREKA_HOST=LittleChefsEureka
   
   littlechef-orderservice:
     depends_on:
-      - eureka-registry
+      - LittleChefsEureka
       - littlechef-gateway
       - littlechef-sql
     restart: always
     networks:
       - littlechefrecipes
     build: ./Backend/OrderService
-    environment:
-      - EUREKA_HOST=eureka-registry

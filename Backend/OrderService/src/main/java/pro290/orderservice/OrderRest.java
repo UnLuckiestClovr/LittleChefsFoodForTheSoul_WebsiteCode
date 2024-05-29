@@ -7,6 +7,7 @@
 
 package pro290.orderservice;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -37,7 +38,7 @@ public class OrderRest
 
     @PostMapping(path = "/create/{UID}")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public void CreateAnOrder(@RequestBody List<OrderItem> items, @PathVariable UUID UID) 
+    public void CreateAnOrder(@RequestBody List<OrderItem> items, @PathVariable String UID) 
     {
         RecipeOrder order = new RecipeOrder();
         UUID orderID = UUID.randomUUID();
@@ -72,6 +73,22 @@ public class OrderRest
 
         or.save(order);
 
+    }
+
+    @GetMapping(path = "/getallorder/{UID}")
+    @ResponseStatus(code = HttpStatus.OK)
+    public List<RecipeOrder> GetAllOrdersByUID(@PathVariable String uid)
+    {
+        List<RecipeOrder> orders = or.findAll();
+        List<RecipeOrder> usersOrders = new ArrayList<>();
+
+        for (RecipeOrder recipeOrder : orders) {
+            if(recipeOrder.getUid() == uid)
+            {
+                usersOrders.add(recipeOrder);
+            }
+        }
+        return usersOrders;
     }
 
     @DeleteMapping(path = "/{OID}")
