@@ -1,7 +1,7 @@
 {
   "Routes": [
     {
-      "ServiceName": "userapi",
+      "ServiceName": "UserAPI",
       "DownstreamPathTemplate": "/{everything}",
       "UpstreamPathTemplate": "/user/{everything}",
       "UpstreamHttpMethod": [
