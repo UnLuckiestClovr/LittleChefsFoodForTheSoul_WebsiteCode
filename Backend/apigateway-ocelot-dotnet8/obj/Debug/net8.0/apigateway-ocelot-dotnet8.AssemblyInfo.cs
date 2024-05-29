@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("apigateway-ocelot-dotnet8")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8447f6d93634b84782c9d9219b69feee50125ea2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7eb878f2c8cce93a3224041f6402137007dea11c")]
 [assembly: System.Reflection.AssemblyProductAttribute("apigateway-ocelot-dotnet8")]
 [assembly: System.Reflection.AssemblyTitleAttribute("apigateway-ocelot-dotnet8")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
