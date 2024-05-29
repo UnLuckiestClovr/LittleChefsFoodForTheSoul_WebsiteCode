@@ -105,5 +105,3 @@ services:
     networks:
       - littlechefrecipes
     build: ./Backend/OrderService
-    environment:
-      - EUREKA_HOST=eureka-registry
