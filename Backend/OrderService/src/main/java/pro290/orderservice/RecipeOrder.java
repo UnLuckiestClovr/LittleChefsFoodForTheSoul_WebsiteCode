@@ -14,13 +14,13 @@ public class RecipeOrder {
     private UUID id;
 
     @Column(name = "UID")
-    private UUID uid;
+    private String uid;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> items = new ArrayList<>();
 
     // Constructors
-    public RecipeOrder(UUID oid, UUID uid, List<OrderItem> items) {
+    public RecipeOrder(UUID oid, String uid, List<OrderItem> items) {
         this.id = oid;
         this.uid = uid;
         this.items = items;
@@ -42,11 +42,11 @@ public class RecipeOrder {
         this.id = id;
     }
 
-    public UUID getUid() {
+    public String getUid() {
         return uid;
     }
 
-    public void setUid(UUID uid) {
+    public void setUid(String uid) {
         this.uid = uid;
     }
 
