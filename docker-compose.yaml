@@ -9,18 +9,19 @@ services:
     ports:
       - 15000:8761
     container_name: LittleChefsEureka
+    hostname: eureka-registry
     image: steeltoeoss/eureka-server
 
   littlechef-gateway:
     container_name: littlechef-gateway
     build:
-      context: ./apigateway-ocelot-dotnet8
+      context: ./Backend/apigateway-ocelot-dotnet8
       dockerfile: Dockerfile
     image: gateway:1
     restart: always
     hostname: littlechef-gateway
     ports:
-      - 15010:8080
+      - 15010:15010
     networks:
       - littlechefrecipes
     depends_on:
@@ -83,26 +84,26 @@ services:
     deploy:
       replicas: 5
 
-  # littlechef-basketservice:
-  #   depends_on:
-  #    - eureka-registry
-  #   restart: always
-  #   networks:
-  #     - littlechefrecipes
-  #   ports:
-  #     - "15040-15049:15013"
-  #   build: ./Backend/BasketService
-  #   deploy:
-  #      replicas: 5
+  littlechef-bascket-api:
+    depends_on:
+      - eureka-registry
+      - littlechef-gateway
+      - littlechef-redisstack
+    restart: always
+    networks:
+      - littlechefrecipes
+    build: ./Backend/BascketAPI
+    environment:
+      - EUREKA_HOST=eureka-registry
   
-  # littlechef-orderservice:
-  #   depends_on:
-  #    - eureka-registry
-  #   restart: always
-  #   networks:
-  #     - littlechefrecipes
-  #   ports:
-  #     - "15050-15059:15014"
-  #   build: ./Backend/OrderService
-  #   deploy:
-  #      replicas: 5
+  littlechef-orderservice:
+    depends_on:
+      - eureka-registry
+      - littlechef-gateway
+      - littlechef-sql
+    restart: always
+    networks:
+      - littlechefrecipes
+    build: ./Backend/OrderService
+    environment:
+      - EUREKA_HOST=eureka-registry
