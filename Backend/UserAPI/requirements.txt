@@ -5,3 +5,4 @@ pydantic==1.10.14
 pymongo
 py_eureka_client
 pika
+bcrypt
