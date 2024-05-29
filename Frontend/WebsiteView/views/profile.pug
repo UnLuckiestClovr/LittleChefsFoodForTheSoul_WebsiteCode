@@ -1,11 +1,13 @@
 extends layout
 
 block content
-  h1= 'Hello' + userData.Username
+  h1= 'Hello ' + userData.Username
   br
   hr
   br
   article(id=ProfileData)
+    p= userData.FullName 
+    p= userData.Email
   br
-    br
-    button(id="LogoutBTN", class="PrettyButton") Log Out
+  br
+  a(id="LogoutBTN", class="PrettyButton", href="/loginorregister/logout") Log Out

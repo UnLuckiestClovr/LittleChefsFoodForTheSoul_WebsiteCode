@@ -21,7 +21,7 @@ html
           td
             a(href="/search") Search For A Recipe
           td
-            if loggedInBool == true
+            if loggedIn == true
               a(id="userProfile", href="/profile") Profile
             else 
               a(id="userLoginOrReg", href="/loginorregister") Login / Register
@@ -37,7 +37,7 @@ html
           td
             a(href="/search") Search For A Recipe
           td
-            if loggedInBool == true
+            if loggedIn == true
               a(id="userProfile", href="/Profile") Profile
             else 
               a(id="userLoginOrReg", href="/LoginorRegister") Login / Register

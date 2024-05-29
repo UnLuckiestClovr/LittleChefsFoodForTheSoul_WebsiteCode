@@ -54,7 +54,11 @@
     </dependencies>
 
     <build>
+<<<<<<< HEAD
         <finalName>BascketAPI</finalName>
+=======
+    <finalName>BascketAPI</finalName>
+>>>>>>> 3850683bf5882c80f3dd24bb3a0c0a62ae4ad817
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

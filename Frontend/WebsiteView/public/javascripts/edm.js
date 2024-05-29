@@ -44,17 +44,17 @@ try {
         }
 
         const attempt = {
-            username: uName,
-            password: uPswrd
+            Username: uName,
+            Password: uPswrd
         }
 
         try {
-            const response = await fetch('/loginorregister/loginAttempt', {
+            const response = await fetch('/loginorregister/attemptlogin', {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(attempt)
+                body: JSON.stringify(attempt)   
             })
 
             if(response.ok) {
@@ -103,19 +103,19 @@ try {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(newUser)
-            })
-
-            console.log(response)
+            });
             
             if(response.ok) {
-                relativeUsername = uName
-                window.location.href = "/loginorregister"
+                relativeUsername = uName;
+                window.location.href = "/loginorregister";
             } else {
-                console.log("Registry Failure")
+                const errorData = await response.json();
+                console.log("Registry Failure", errorData);
             }
         } catch (error) {
-            console.log(error)
+            console.log('Fetch error:', error);
         }
+        
     })
 } catch (error) {
 

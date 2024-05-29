@@ -7,15 +7,16 @@ const USERAPIHOST = 'localhost';
 
 router.get('/', async function(req, res, next) {
   try {
-    let boolLog = false
-    if(req.session === undefined) {
-      res.render('loginorregister', { title: 'Little Chefs' });
-    } else {
-      boolLog = (req.session.user !== null && req.session.user !== undefined)
-      res.render('profile', { title:'Little Chefs', userData : req.session.user, loggedIn : boolLog })
-    }
+      let boolLog = false;
+      if (req.session.user.UID === null || req.session.user.UID === undefined) {
+          res.render('loginorregister', { title: 'Little Chefs' });
+      } else {
+          boolLog = true;
+          console.log('Session data in GET /:', req.session.user);
+          res.render('profile', { title: 'Little Chefs', userData: req.session.user, loggedIn: boolLog });
+      }
   } catch (error) {
-    res.status(500).json({ error: error.message })
+      res.status(500).json({ error: error.message });
   }
 });
 
