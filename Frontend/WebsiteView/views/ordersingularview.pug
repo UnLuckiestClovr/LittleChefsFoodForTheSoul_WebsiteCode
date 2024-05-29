@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h1(id=recipe.RID)= recipe.RecipeName
+  p= recipe.Description
+  br
+  h2 Ingredients:
+  each ingredient in recipe.Ingredients 
+    p= ingredient
