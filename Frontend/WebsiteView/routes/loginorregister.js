@@ -4,20 +4,6 @@ const axios = require('axios')
 
 const bcrypt = require('bcrypt')
 
-async function hashPassword(plainTextPswrd) {
-    try {
-        bcrypt.genSalt(10, function(err, salt) {
-            bcrypt.hash(plainTextPswrd, salt, function(err, hash) {
-                console.log(hash)
-                return hash
-            })
-        })
-    } catch (error) {
-        console.log(error)
-        console.log("CRUD ~ 101")
-    }
-}
-
 const GATEWAYHOST = 'localhost';
 
 router.get('/', function(req, res, next) {
