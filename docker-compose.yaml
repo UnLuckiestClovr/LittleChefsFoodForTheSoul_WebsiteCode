@@ -48,7 +48,7 @@ services:
     container_name: LittleChefsRedisStack
     image: redis/redis-stack:latest
 
-  littlechef-sql:
+  LittleChefsSQL:
     restart: always
     networks:
       - littlechefrecipes
@@ -100,7 +100,7 @@ services:
     depends_on:
       - LittleChefsEureka
       - littlechef-gateway
-      - littlechef-sql
+      - LittleChefsSQL
     restart: always
     networks:
       - littlechefrecipes

@@ -26,6 +26,8 @@ public class OrderItem {
     @JoinColumn(name = "recipe_order_id")
     private RecipeOrder order;
 
+    public int quantity;
+
     public OrderItem(String RID) {
         this.RID = RID;
     }

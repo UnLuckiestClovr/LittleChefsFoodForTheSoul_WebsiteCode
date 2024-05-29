@@ -5,27 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e066ab24-a280-425a-83e2-c3358a19f24f" name="Changes" comment="Fixed Stupid">
-      <change beforePath="$PROJECT_DIR$/../BascketAPI/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../BascketAPI/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../OrderService/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../OrderService/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/bin/Debug/net8.0/apigateway-ocelot-dotnet8.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/bin/Debug/net8.0/apigateway-ocelot-dotnet8.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/bin/Debug/net8.0/apigateway-ocelot-dotnet8.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/bin/Debug/net8.0/apigateway-ocelot-dotnet8.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/bin/Debug/net8.0/apigateway-ocelot-dotnet8.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/bin/Debug/net8.0/apigateway-ocelot-dotnet8.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/apigateway-ocelot-dotnet8.AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/apigateway-ocelot-dotnet8.AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/apigateway-ocelot-dotnet8.AssemblyInfoInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/apigateway-ocelot-dotnet8.AssemblyInfoInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/apigateway-ocelot-dotnet8.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/apigateway-ocelot-dotnet8.assets.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/apigateway-ocelot-dotnet8.csproj.CoreCompileInputs.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/apigateway-ocelot-dotnet8.csproj.CoreCompileInputs.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/apigateway-ocelot-dotnet8.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/apigateway-ocelot-dotnet8.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/apigateway-ocelot-dotnet8.genruntimeconfig.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/apigateway-ocelot-dotnet8.genruntimeconfig.cache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/apigateway-ocelot-dotnet8.pdb" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/apigateway-ocelot-dotnet8.pdb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/apigateway-ocelot-dotnet8.sourcelink.json" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/apigateway-ocelot-dotnet8.sourcelink.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/apphost.exe" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/apphost.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/ref/apigateway-ocelot-dotnet8.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/ref/apigateway-ocelot-dotnet8.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/refint/apigateway-ocelot-dotnet8.dll" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/Debug/net8.0/refint/apigateway-ocelot-dotnet8.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/apigateway-ocelot-dotnet8.csproj.nuget.dgspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/apigateway-ocelot-dotnet8.csproj.nuget.dgspec.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/apigateway-ocelot-dotnet8.csproj.nuget.g.props" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/apigateway-ocelot-dotnet8.csproj.nuget.g.props" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/project.assets.json" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/project.assets.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/project.nuget.cache" beforeDir="false" afterPath="$PROJECT_DIR$/../apigateway-ocelot-dotnet8/obj/project.nuget.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrderService/src/main/java/pro290/orderservice/OrderItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/../OrderService/src/main/java/pro290/orderservice/OrderItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../OrderService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../OrderService/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/../../docker-compose.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -65,6 +47,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Maven.OrderService [clean].executor": "Run",
+    "Maven.OrderService [compile].executor": "Run",
     "Maven.OrderService [package].executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -124,6 +107,7 @@
       <workItem from="1715015544518" duration="1112000" />
       <workItem from="1715880145631" duration="155000" />
       <workItem from="1716928531279" duration="96000" />
+      <workItem from="1716947398112" duration="1828000" />
     </task>
     <task id="LOCAL-00001" summary="Some Basics Done">
       <option name="closed" value="true" />
