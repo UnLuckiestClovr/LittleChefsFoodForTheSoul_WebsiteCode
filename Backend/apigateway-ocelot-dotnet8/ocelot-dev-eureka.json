@@ -20,7 +20,7 @@
       }
     },
     {
-      "ServiceName": "BascketAPI",
+      "ServiceName": "BasketAPI",
       "DownstreamPathTemplate": "/{everything}",
       "UpstreamPathTemplate": "/basket/{everything}",
       "UpstreamHttpMethod": [

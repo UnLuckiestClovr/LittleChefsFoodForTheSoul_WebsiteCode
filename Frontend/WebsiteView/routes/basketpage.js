@@ -14,7 +14,7 @@ router.get('/', async function(req, res, next) {
             boolLog = (req.session.user !== null && req.session.user !== undefined);
             let response;
             if (req.session.user.BID === null || req.session.user.BID === undefined) {
-                response = await axios.post(`http://${GATEWAYHOST}:15010/basket/create`, req.body);
+                response = await axios.post(`http://${GATEWAYHOST}:15010/basket/create/Aloha`, req.body);
             } else {
                 response = await axios.get(`http://${GATEWAYHOST}:15010/basket/${req.session.user.BID}`);
             }

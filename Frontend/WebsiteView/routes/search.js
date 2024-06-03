@@ -17,7 +17,7 @@ async function fetchData(url) {
 
 router.get('/', async function(req, res, next) {
     let boolLog = false;
-    if(req.session.user.UID === null || req.session.user.UID === undefined) {
+    if(req.session.user === null || req.session.user === undefined) {
         boolLog = false
     } else {
         boolLog = true;
@@ -28,7 +28,7 @@ router.get('/', async function(req, res, next) {
 
 router.get('/ingredient/:ingredient', async function(req, res, next) {
     let boolLog = false;
-    if(req.session.user.UID === null || req.session.user.UID === undefined) {
+    if(req.session.user === null || req.session.user === undefined) {
         boolLog = false
     } else {
         boolLog = true;
@@ -39,7 +39,7 @@ router.get('/ingredient/:ingredient', async function(req, res, next) {
 
 router.get('/category/:category', async function(req, res, next) {
     let boolLog = false;
-    if(req.session.user.UID === null || req.session.user.UID === undefined) {
+    if(req.session.user === null || req.session.user === undefined) {
         boolLog = false
     } else {
         boolLog = true;

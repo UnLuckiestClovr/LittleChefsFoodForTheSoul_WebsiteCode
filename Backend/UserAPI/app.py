@@ -31,8 +31,8 @@ async def root():
     return {"message": "Hello Bigger Applications!"}
 
 # Configuration for Eureka client
-EurekaHost = "LittleChefsEureka"  #"LittleChefsEureka" when dockerized
-EurekaPort = 8761 # 8761
+EurekaHost = "localhost"  #"LittleChefsEureka" when dockerized
+EurekaPort = 15000 # 8761
 
 max_retries = 3
 retry_delay = 2  # Delay between retries in seconds

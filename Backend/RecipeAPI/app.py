@@ -21,8 +21,8 @@ async def root():
     return {"message": "Hello Bigger Applications!"}
 
 # Configuration for Eureka client
-EurekaHost = "LittleChefsEureka"
-EurekaPort = 8761
+EurekaHost = "localhost"
+EurekaPort = 15000
 
 max_retries = 3
 retry_delay = 2  # Delay between retries in seconds
